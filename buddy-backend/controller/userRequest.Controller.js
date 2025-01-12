@@ -13,7 +13,9 @@ const submitRequest = async (req, res) => {
             documents: req.body.documents.documents
         };
         
+        // in future create a service to save the document to s3 and save the url to the database.
         const savedDocuments = await documentDAL.saveDocument(documentData);
+
         const newRequest = new UserRequest({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
@@ -152,6 +154,8 @@ const rejectRequest = async (req, res) => {
         });
     }
 };
+
+
 
 export default {
     submitRequest,
