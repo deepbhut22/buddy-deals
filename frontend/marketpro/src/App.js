@@ -19,6 +19,10 @@ import VendorTwoPage from "./pages/VendorTwoPage";
 import VendorTwoDetailsPage from "./pages/VendorTwoDetailsPage";
 import BecomeSellerPage from "./pages/BecomeSellerPage";
 import WishlistPage from "./pages/WishlistPage";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+// import './App.css';
+
 function App() {
   return (
     <BrowserRouter>
@@ -29,6 +33,8 @@ function App() {
         <Route exact path='/' element={<HomePageOne />} />
         <Route exact path='/index-two' element={<HomePageTwo />} />
         <Route exact path='/index-three' element={<HomePageThree />} />
+        <Route exact path='/login' element={<Login />} />
+        <Route exact path='/register' element={<Register />} />
         <Route exact path='/shop' element={<ShopPage />} />
         <Route
           exact

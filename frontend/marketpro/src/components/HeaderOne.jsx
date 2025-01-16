@@ -157,7 +157,7 @@ const HeaderOne = () => {
                       className='common-dropdown__link nav-submenu__link hover-bg-neutral-100'
                       onClick={() => setActiveIndex(null)}
                     >
-                      Home Fashion
+                      Home Fashionnnnnnnnnnnnnnnn
                     </Link>
                   </li>
                 </ul>
@@ -385,6 +385,19 @@ const HeaderOne = () => {
                   Contact Us
                 </Link>
               </li>
+
+              {/* Login Menu */}
+              <li className='nav-menu__item'>
+                <Link
+                  to='/contact'
+                  className='nav-menu__link'
+                  onClick={() => setActiveIndex}
+                >
+                  Login
+                </Link>
+              </li>
+
+              
             </ul>
             {/* Nav Menu End */}
           </div>
