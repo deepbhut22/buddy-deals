@@ -44,3 +44,35 @@ const getUsers = async (req, res) => {
     res.status(500).json({ success: false, message: "Server error", error });
   }
 };
+
+const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body; 
+
+    // Check if email and password are provided
+    if (!email || !password) {
+      return res.status(400).json({ success: false, message: "Email and password are required" });
+    } 
+
+    // Find the user by email
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    // Compare the provided password with the stored hashed password
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordCorrect) {
+      return res.status(401).json({ success: false, message: "Invalid credentials" });
+    } 
+
+  } catch (error) {
+    
+  }
+}
+
+export default {
+  getUsers,
+};
