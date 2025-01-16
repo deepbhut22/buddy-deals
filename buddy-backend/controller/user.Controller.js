@@ -75,4 +75,5 @@ const loginUser = async (req, res) => {
 
 export default {
   getUsers,
+  loginUser,
 };
