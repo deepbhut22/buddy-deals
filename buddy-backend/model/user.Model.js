@@ -36,11 +36,12 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    documents: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Document",
-        // required: true,
-    }
+    documents: [
+        {
+            name: { type: String, required: true },
+            url: { type: String, required: true },
+        },
+    ],
 });
 
 export default mongoose.model("User", userSchema);

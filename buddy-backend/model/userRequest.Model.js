@@ -23,11 +23,12 @@ const userRequestSchema = new mongoose.Schema({
         type: Number, 
         required: true,
     },
-    documents: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Document',
-        // required: true,
-    },
+    documents: [
+        {
+            name: { type: String, required: true },
+            url: { type: String, required: true },
+        },
+    ],
     requestedAt: {
         type: Date,
         default: Date.now,

@@ -10,14 +10,18 @@
   
     const handleSubmit = async (e) => {
       e.preventDefault();
+      console.log(formData);
+      
       try {
-        const response = await fetch('YOUR_API_ENDPOINT/login', {
+        const response = await fetch('http://localhost:5000/api/v1/user-auth/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(formData),
         });
+        console.log("sent");
+        
         const data = await response.json();
         console.log(data);
       } catch (error) {

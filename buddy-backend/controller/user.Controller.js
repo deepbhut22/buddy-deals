@@ -1,4 +1,4 @@
-import User from "../models/user.Model.js";
+import User from "../model/user.Model.js";
 
 const getUsers = async (req, res) => {
   try {
@@ -47,6 +47,8 @@ const getUsers = async (req, res) => {
 
 const loginUser = async (req, res) => {
   try {
+    console.log(req.body);
+    
     const { email, password } = req.body; 
 
     // Check if email and password are provided
@@ -63,6 +65,8 @@ const loginUser = async (req, res) => {
 
     // Compare the provided password with the stored hashed password
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
+    console.log(isPasswordCorrect);
+    
 
     if (!isPasswordCorrect) {
       return res.status(401).json({ success: false, message: "Invalid credentials" });

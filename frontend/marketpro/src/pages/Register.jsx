@@ -61,24 +61,35 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (currentStep === totalSteps && isStepComplete()) {
+      const formDataToSend = new FormData();
+      formDataToSend.append("firstName", formData.firstName);
+      formDataToSend.append("lastName", formData.lastName);
+      formDataToSend.append("email", formData.email);
+      formDataToSend.append("password", formData.password);
+      formDataToSend.append("phone", formData.phone);
+      formDataToSend.append("countryCode", formData.countryCode);
+
+      Object.entries(formData.documents).forEach(([key, file]) => {
+        if (file) formDataToSend.append(key, file);
+      });
+
       try {
-        const response = await fetch('YOUR_API_ENDPOINT/register', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
+        const response = await fetch("http://localhost:5000/api/v1/user-requests/register", {
+          method: "POST",
+          body: formDataToSend,
         });
         const data = await response.json();
-        console.log(data);
+        console.log("Sent", data);
       } catch (error) {
-        console.error('Registration error:', error);
+        console.error("Registration error:", error);
       }
     } else {
       handleNext();
     }
   };
+
 
   const getStepTitle = () => {
     switch (currentStep) {

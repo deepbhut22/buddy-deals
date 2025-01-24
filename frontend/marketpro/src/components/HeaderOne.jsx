@@ -87,7 +87,8 @@ const HeaderOne = () => {
               type='submit'
               className='w-48 h-48 bg-main-600 rounded-circle flex-center text-xl text-white position-absolute top-50 translate-middle-y inset-inline-end-0 me-8'
             >
-              <i className='ph ph-magnifying-glass' />
+              {/* <i className='ph ph-magnifying-glass' /> */}
+              ohhhh
             </button>
           </div>
         </div>
@@ -117,7 +118,7 @@ const HeaderOne = () => {
             {/* Nav Menu Start */}
             <ul className='nav-menu flex-align nav-menu--mobile'>
               {/* Home Menu */}
-              <li
+              {/* <li
                 onClick={() => handleMenuClick(0)}
                 className={`on-hover-item nav-menu__item has-submenu ${
                   activeIndex === 0 ? "d-block" : ""
@@ -161,10 +162,10 @@ const HeaderOne = () => {
                     </Link>
                   </li>
                 </ul>
-              </li>
+              </li> */}
 
               {/* Shop Menu */}
-              <li
+              {/* <li
                 onClick={() => handleMenuClick(1)}
                 className={`on-hover-item nav-menu__item has-submenu ${
                   activeIndex === 1 ? "d-block" : ""
@@ -209,10 +210,10 @@ const HeaderOne = () => {
                     </Link>
                   </li>
                 </ul>
-              </li>
+              </li> */}
 
               {/* Pages Menu */}
-              <li
+              {/* <li
                 onClick={() => handleMenuClick(2)}
                 className={`on-hover-item nav-menu__item has-submenu ${
                   activeIndex === 2 ? "d-block" : ""
@@ -278,10 +279,10 @@ const HeaderOne = () => {
                     </Link>
                   </li>
                 </ul>
-              </li>
+              </li> */}
 
               {/* Vendors Menu */}
-              <li
+              {/* <li
                 onClick={() => handleMenuClick(3)}
                 className={`on-hover-item nav-menu__item has-submenu ${
                   activeIndex === 3 ? "d-block" : ""
@@ -335,10 +336,10 @@ const HeaderOne = () => {
                     </Link>
                   </li>
                 </ul>
-              </li>
+              </li> */}
 
               {/* Blog Menu */}
-              <li
+              {/* <li
                 onClick={() => handleMenuClick(4)}
                 className={`on-hover-item nav-menu__item has-submenu ${
                   activeIndex === 4 ? "d-block" : ""
@@ -373,7 +374,7 @@ const HeaderOne = () => {
                     </Link>
                   </li>
                 </ul>
-              </li>
+              </li> */}
 
               {/* Contact Us Menu */}
               <li className='nav-menu__item'>
@@ -389,7 +390,7 @@ const HeaderOne = () => {
               {/* Login Menu */}
               <li className='nav-menu__item'>
                 <Link
-                  to='/contact'
+                  to='/login'
                   className='nav-menu__link'
                   onClick={() => setActiveIndex}
                 >
@@ -397,6 +398,16 @@ const HeaderOne = () => {
                 </Link>
               </li>
 
+              {/* register Menu */}
+              <li className='nav-menu__item'>
+                <Link
+                  to='/register'
+                  className='nav-menu__link'
+                  onClick={() => setActiveIndex}
+                >
+                  Register
+                </Link>
+              </li>
               
             </ul>
             {/* Nav Menu End */}
@@ -425,7 +436,7 @@ const HeaderOne = () => {
                   About us
                 </Link>
               </li>
-              <li className='border-right-item'>
+              {/* <li className='border-right-item'>
                 <Link
                   to='#'
                   className='text-white text-sm hover-text-decoration-underline'
@@ -440,7 +451,7 @@ const HeaderOne = () => {
                 >
                   Returns Policy
                 </Link>
-              </li>
+              </li> */}
             </ul>
             <ul className='header-top__right flex-align flex-wrap'>
               <li className='on-hover-item border-right-item border-right-item-sm-space has-submenu arrow-white'>
@@ -503,7 +514,7 @@ const HeaderOne = () => {
                         alt=''
                         className='w-16 h-12 rounded-4 border border-gray-100'
                       />
-                      Japan
+                      Hindi
                     </Link>
                   </li>
                   <li>
@@ -517,7 +528,7 @@ const HeaderOne = () => {
                         alt=''
                         className='w-16 h-12 rounded-4 border border-gray-100'
                       />
-                      French
+                      Gujarati
                     </Link>
                   </li>
                   <li>
@@ -531,10 +542,10 @@ const HeaderOne = () => {
                         alt=''
                         className='w-16 h-12 rounded-4 border border-gray-100'
                       />
-                      Germany
+                      Punjabi
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link
                       to='#'
                       className='hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0'
@@ -561,11 +572,10 @@ const HeaderOne = () => {
                       />
                       South Korea
                     </Link>
-                  </li>
+                  </li> */}
                 </ul>
               </li>
-              <li className='on-hover-item border-right-item border-right-item-sm-space has-submenu arrow-white'>
-                {/* Display the selected currency */}
+              {/* <li className='on-hover-item border-right-item border-right-item-sm-space has-submenu arrow-white'>
                 <Link to='#' className='selected-text text-white text-sm py-8'>
                   {selectedCurrency}
                 </Link>
@@ -655,7 +665,7 @@ const HeaderOne = () => {
                     </Link>
                   </li>
                 </ul>
-              </li>
+              </li> */}
               <li className='border-right-item'>
                 <Link
                   to='/account'
@@ -735,19 +745,19 @@ const HeaderOne = () => {
                       className='js-example-basic-single border border-gray-200 border-end-0'
                       name='state'
                     >
-                      <option value={1}>Alabama</option>
-                      <option value={1}>Alaska</option>
-                      <option value={1}>Arizona</option>
-                      <option value={1}>Delaware</option>
-                      <option value={1}>Florida</option>
-                      <option value={1}>Georgia</option>
-                      <option value={1}>Hawaii</option>
-                      <option value={1}>Indiana</option>
-                      <option value={1}>Marzland</option>
-                      <option value={1}>Nevada</option>
-                      <option value={1}>New Jersey</option>
-                      <option value={1}>New Mexico</option>
-                      <option value={1}>New York</option>
+                      <option value={1}>Delhi</option>
+                      <option value={1}>Mumbai</option>
+                      <option value={1}>Ahmedabad</option>
+                      <option value={1}>Kolkata</option>
+                      <option value={1}>Chennai</option>
+                      <option value={1}>Jammu</option>
+                      <option value={1}>Punjab</option>
+                      <option value={1}>Hariyana</option>
+                      <option value={1}>Himachal</option>
+                      <option value={1}>Maharashtra</option>
+                      <option value={1}>Madhya Pradesh</option>
+                      <option value={1}>Rajasthan</option>
+                      <option value={1}>Uttar Pradesh</option>
                     </select>
                   </div>
                 </div>
@@ -1187,7 +1197,7 @@ const HeaderOne = () => {
               <div className='header-menu d-lg-block d-none'>
                 {/* Nav Menu Start */}
                 <ul className='nav-menu flex-align '>
-                  <li className='on-hover-item nav-menu__item has-submenu'>
+                  {/* <li className='on-hover-item nav-menu__item has-submenu'>
                     <Link to='#' className='nav-menu__link'>
                       Home
                     </Link>
@@ -1230,8 +1240,8 @@ const HeaderOne = () => {
                         </NavLink>
                       </li>
                     </ul>
-                  </li>
-                  <li className='on-hover-item nav-menu__item has-submenu'>
+                  </li> */}
+                  {/* <li className='on-hover-item nav-menu__item has-submenu'>
                     <Link to='#' className='nav-menu__link'>
                       Shop
                     </Link>
@@ -1350,8 +1360,8 @@ const HeaderOne = () => {
                         </NavLink>
                       </li>
                     </ul>
-                  </li>
-                  <li className='on-hover-item nav-menu__item has-submenu'>
+                  </li> */}
+                  {/* <li className='on-hover-item nav-menu__item has-submenu'>
                     <span className='badge-notification bg-tertiary-600 text-white text-sm py-2 px-8 rounded-4'>
                       New
                     </span>
@@ -1409,8 +1419,8 @@ const HeaderOne = () => {
                         </NavLink>
                       </li>
                     </ul>
-                  </li>
-                  <li className='on-hover-item nav-menu__item has-submenu'>
+                  </li> */}
+                  {/* <li className='on-hover-item nav-menu__item has-submenu'>
                     <Link to='#' className='nav-menu__link'>
                       Blog
                     </Link>
@@ -1442,7 +1452,7 @@ const HeaderOne = () => {
                         </NavLink>
                       </li>
                     </ul>
-                  </li>
+                  </li> */}
                   <li className='nav-menu__item'>
                     <NavLink
                       to='/contact'
@@ -1455,6 +1465,28 @@ const HeaderOne = () => {
                       Contact Us
                     </NavLink>
                   </li>
+                  {/* Login Menu */}
+                  <li className='nav-menu__item'>
+                    <Link
+                      to='/login'
+                      className='nav-menu__link'
+                      onClick={() => setActiveIndex}
+                    >
+                      Login
+                    </Link>
+                  </li>
+
+                  {/* register Menu */}
+                  <li className='nav-menu__item'>
+                    <Link
+                      to='/register'
+                      className='nav-menu__link'
+                      onClick={() => setActiveIndex}
+                    >
+                      Register
+                    </Link>
+                  </li>
+
                 </ul>
                 {/* Nav Menu End */}
               </div>
@@ -1469,7 +1501,7 @@ const HeaderOne = () => {
                 <div className='d-flex text-32'>
                   <i className='ph ph-phone-call' />
                 </div>
-                01- 234 567 890
+                +91 0123456789
               </Link>
               <div className='me-16 d-lg-none d-block'>
                 <div className='flex-align flex-wrap gap-12'>
