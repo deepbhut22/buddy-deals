@@ -11,33 +11,32 @@ function Register() {
     password: '',
     phone: '',
     countryCode: '',
-    documents: {
-      doc1: null,
-      doc2: null,
-      doc3: null,
-      doc4: null
-    }
+    designation: '',
+    document: null,
   });
 
   const totalSteps = 4;
-  const documentTypes = ['Identity Proof', 'Address Proof', 'Education Certificate', 'Professional Certificate'];
+
+  const documentRequirements = {
+    Military: 'Resume',
+    Navy: 'Management Certificate',
+    Airforce: 'Portfolio',
+    SpecialForce: 'Testing Certification',
+  };
 
   const handleNext = () => {
-    setCurrentStep(prev => Math.min(prev + 1, totalSteps));
+    setCurrentStep((prev) => Math.min(prev + 1, totalSteps));
   };
 
   const handlePrevious = () => {
-    setCurrentStep(prev => Math.max(prev - 1, 1));
+    setCurrentStep((prev) => Math.max(prev - 1, 1));
   };
 
-  const handleFileChange = (docKey, file) => {
+  const handleFileChange = (file) => {
     if (file && file.type === 'application/pdf') {
-      setFormData(prev => ({
+      setFormData((prev) => ({
         ...prev,
-        documents: {
-          ...prev.documents,
-          [docKey]: file
-        }
+        document: file,
       }));
     } else {
       alert('Please upload PDF files only');
@@ -53,7 +52,7 @@ function Register() {
       case 3:
         return formData.phone && formData.countryCode;
       case 4:
-        return Object.values(formData.documents).every(doc => doc !== null);
+        return formData.designation && formData.document;
       default:
         return false;
     }
@@ -64,45 +63,42 @@ function Register() {
 
     if (currentStep === totalSteps && isStepComplete()) {
       const formDataToSend = new FormData();
-      formDataToSend.append("firstName", formData.firstName);
-      formDataToSend.append("lastName", formData.lastName);
-      formDataToSend.append("email", formData.email);
-      formDataToSend.append("password", formData.password);
-      formDataToSend.append("phone", formData.phone);
-      formDataToSend.append("countryCode", formData.countryCode);
-
-      Object.entries(formData.documents).forEach(([key, file]) => {
-        if (file) formDataToSend.append(key, file);
-      });
+      formDataToSend.append('firstName', formData.firstName);
+      formDataToSend.append('lastName', formData.lastName);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('password', formData.password);
+      formDataToSend.append('phone', formData.phone);
+      formDataToSend.append('countryCode', formData.countryCode);
+      formDataToSend.append('designation', formData.designation);
+      formDataToSend.append('document', formData.document);
 
       try {
-        const response = await fetch("http://localhost:5000/api/v1/user-requests/register", {
-          method: "POST",
+        const response = await fetch('http://localhost:5000/api/v1/user-requests/register', {
+          method: 'POST',
           body: formDataToSend,
         });
         const data = await response.json();
-        console.log("Sent", data);
+        console.log('Sent', data);
       } catch (error) {
-        console.error("Registration error:", error);
+        console.error('Registration error:', error);
       }
     } else {
       handleNext();
     }
   };
 
-
   const getStepTitle = () => {
     switch (currentStep) {
       case 1:
         return "Let's get started";
       case 2:
-        return "Create your account";
+        return 'Create your account';
       case 3:
-        return "Contact information";
+        return 'Contact information';
       case 4:
-        return "Document verification";
+        return 'Document verification';
       default:
-        return "";
+        return '';
     }
   };
 
@@ -120,11 +116,15 @@ function Register() {
           <div className="progress-line" style={{ width: `${progressWidth}%` }} />
           {[1, 2, 3, 4].map((step) => (
             <div key={step} className="step-item">
-              <div className={`step-circle ${
-                step === currentStep ? 'active' :
-                step < currentStep ? 'completed' :
-                ''
-              }`}>
+              <div
+                className={`step-circle ${
+                  step === currentStep
+                    ? 'active'
+                    : step < currentStep
+                    ? 'completed'
+                    : ''
+                }`}
+              >
                 <span className="step-number">{step}</span>
               </div>
             </div>
@@ -221,30 +221,46 @@ function Register() {
 
           {currentStep === 4 && (
             <div>
-              {documentTypes.map((docType, index) => (
-                <div key={index} className={`file-upload mb-3 ${formData.documents[`doc${index + 1}`] ? 'has-file' : ''}`}>
+              <div className="mb-3">
+                <label htmlFor="designation" className="form-label">Select Designation</label>
+                <select
+                  className="form-select"
+                  id="designation"
+                  value={formData.designation}
+                  onChange={(e) => setFormData({ ...formData, designation: e.target.value, document: null })}
+                  required
+                >
+                  <option value="">-- Select Designation --</option>
+                  {Object.keys(documentRequirements).map((designation) => (
+                    <option key={designation} value={designation}>{designation}</option>
+                  ))}
+                </select>
+              </div>
+
+              {formData.designation && (
+                <div className={`file-upload mb-3 ${formData.document ? 'has-file' : ''}`}>
                   <input
                     type="file"
-                    id={`doc${index + 1}`}
+                    id="document"
                     accept=".pdf"
-                    onChange={(e) => handleFileChange(`doc${index + 1}`, e.target.files[0])}
+                    onChange={(e) => handleFileChange(e.target.files[0])}
                     className="d-none"
                   />
-                  <label htmlFor={`doc${index + 1}`}>
+                  <label htmlFor="document">
                     <div className="upload-icon">📄</div>
-                    {formData.documents[`doc${index + 1}`] ? (
+                    {formData.document ? (
                       <div>
-                        {docType} uploaded successfully
+                        {documentRequirements[formData.designation]} uploaded successfully
                         <span className="success-check">✓</span>
                       </div>
                     ) : (
                       <div>
-                        Upload {docType} <span>(PDF only)</span>
+                        Upload {documentRequirements[formData.designation]} <span>(PDF only)</span>
                       </div>
                     )}
                   </label>
                 </div>
-              ))}
+              )}
             </div>
           )}
 
