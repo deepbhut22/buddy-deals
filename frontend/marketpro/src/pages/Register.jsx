@@ -18,10 +18,10 @@ function Register() {
   const totalSteps = 4;
 
   const documentRequirements = {
-    Military: 'Resume',
-    Navy: 'Management Certificate',
-    Airforce: 'Portfolio',
-    SpecialForce: 'Testing Certification',
+    Military: 'doctype1`',
+    Navy: 'doctype2',
+    Airforce: 'doctype3',
+    SpecialForce: 'doctype4',
   };
 
   const handleNext = () => {
@@ -160,7 +160,6 @@ function Register() {
               </div>
             </div>
           )}
-
           {currentStep === 2 && (
             <div>
               <div className="mb-3">

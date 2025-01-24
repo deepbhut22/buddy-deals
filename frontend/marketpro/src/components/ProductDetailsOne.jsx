@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Slider from 'react-slick';
 import { getCountdown } from '../helper/Countdown';
 
 const ProductDetailsOne = () => {
     const [timeLeft, setTimeLeft] = useState(getCountdown());
 
-    useEffect(() => {
+    const location = useLocation();
+    const product = location.state.product;
+
+    useEffect(() => {        
+
         const interval = setInterval(() => {
             setTimeLeft(getCountdown());
-        }, 1000);
+        }, 1000);        
 
         return () => clearInterval(interval);
     }, []);
@@ -60,16 +64,13 @@ const ProductDetailsOne = () => {
                                                     </div>
                                                 ))}
                                             </Slider>
-
-
-
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-xl-6">
                                 <div className="product-details__content">
-                                    <h5 className="mb-12">Lay's Potato Chips Onion Flavored</h5>
+                                    <h5 className="mb-12">{product.name}</h5>
                                     <div className="flex-align flex-wrap gap-12">
                                         <div className="flex-align gap-12 flex-wrap">
                                             <div className="flex-align gap-8">
@@ -104,20 +105,18 @@ const ProductDetailsOne = () => {
                                     </div>
                                     <span className="mt-32 pt-32 text-gray-700 border-top border-gray-100 d-block" />
                                     <p className="text-gray-700">
-                                        Vivamus adipiscing nisl ut dolor dignissim semper. Nulla luctus
-                                        malesuada tincidunt. Class aptent taciti sociosqu ad litora
-                                        torquent
+                                        {product.description}
                                     </p>
                                     <div className="mt-32 flex-align flex-wrap gap-32">
                                         <div className="flex-align gap-8">
-                                            <h4 className="mb-0">$25.00</h4>
-                                            <span className="text-md text-gray-500">$38.00</span>
+                                            <h4 className="mb-0">{product.discount}% Off</h4>
+                                            {/* <span className="text-md text-gray-500">$38.00</span> */}
                                         </div>
-                                        <Link to="#" className="btn btn-main rounded-pill">
+                                        {/* <Link to="#" className="btn btn-main rounded-pill">
                                             Order on What'sApp
-                                        </Link>
+                                        </Link> */}
                                     </div>
-                                    <span className="mt-32 pt-32 text-gray-700 border-top border-gray-100 d-block" />
+                                    {/* <span className="mt-32 pt-32 text-gray-700 border-top border-gray-100 d-block" />
                                     <div className="flex-align flex-wrap gap-16 bg-color-one rounded-8 py-16 px-24">
                                         <div className="flex-align gap-16">
                                             <span className="text-main-600 text-sm">Special Offer:</span>
@@ -141,37 +140,37 @@ const ProductDetailsOne = () => {
                                         <span className="text-gray-900 text-xs">
                                             Remains untill the end of the offer
                                         </span>
-                                    </div>
+                                    </div> */}
                                     <div className="mb-24">
                                         <div className="mt-32 flex-align gap-12 mb-16">
                                             <span className="w-32 h-32 bg-white flex-center rounded-circle text-main-600 box-shadow-xl">
                                                 <i className="ph-fill ph-lightning" />
                                             </span>
                                             <h6 className="text-md mb-0 fw-bold text-gray-900">
-                                                Products are almost sold out
+                                                Almost Coupons Are Gone
                                             </h6>
                                         </div>
                                         <div
                                             className="progress w-100 bg-gray-100 rounded-pill h-8"
                                             role="progressbar"
                                             aria-label="Basic example"
-                                            aria-valuenow={32}
+                                            aria-valuenow={product.remainingCoupons}
                                             aria-valuemin={0}
-                                            aria-valuemax={100}
+                                            aria-valuemax={product.totalCoupons}
                                         >
                                             <div
                                                 className="progress-bar bg-main-two-600 rounded-pill"
-                                                style={{ width: "32%" }}
+                                                style={{ width: product.remainingCoupons / product.totalCoupons * 100 + "%" }}
                                             />
                                         </div>
                                         <span className="text-sm text-gray-700 mt-8">
-                                            Available only:45
+                                            Available only: {product.remainingCoupons}
                                         </span>
                                     </div>
-                                    <span className="text-gray-900 d-block mb-8">Quantity:</span>
+                                    {/* <span className="text-gray-900 d-block mb-8">Quantity:</span> */}
                                     <div className="flex-between gap-16 flex-wrap">
                                         <div className="flex-align flex-wrap gap-16">
-                                            <div className="border border-gray-100 rounded-pill py-9 px-16 flex-align">
+                                            {/* <div className="border border-gray-100 rounded-pill py-9 px-16 flex-align">
                                                 <button onClick={decrementQuantity}
                                                     type="button"
                                                     className="quantity__minus p-4 text-gray-700 hover-text-main-600 flex-center"
@@ -189,13 +188,13 @@ const ProductDetailsOne = () => {
                                                 >
                                                     <i className="ph ph-plus" />
                                                 </button>
-                                            </div>
+                                            </div> */}
                                             <Link
                                                 to="#"
                                                 className="btn btn-main rounded-pill flex-align d-inline-flex gap-8 px-48"
                                             >
                                                 {" "}
-                                                <i className="ph ph-shopping-cart" /> Add To Cart
+                                                <i className="ph ph-shopping-cart" /> Redeem Now
                                             </Link>
                                         </div>
                                         <div className="flex-align gap-12">

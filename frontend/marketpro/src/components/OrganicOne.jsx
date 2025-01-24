@@ -1,8 +1,34 @@
-import React from 'react'
+import React, { useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
+import axios from 'axios';
 
 const OrganicOne = () => {
+
+
+    const [discouts, setDiscounts] = useState([]);
+    const [coupons, setCoupons] = useState([]);
+    const [urlDiscounts, setUrlDiscounts] = useState([]);
+
+    const getAllProducts = async () => {
+        try {
+            const products = await axios.get("http://localhost:5000/api/v1/discounts/products");
+            console.log(products.data.coupons);
+            
+            setDiscounts(products.data.discounts);
+            setCoupons(products.data.coupons);
+            setUrlDiscounts(products.data.urlDiscounts);
+        } catch (error) {
+            console.log(error);            
+        }
+    }
+
+    useEffect(() => {
+        getAllProducts();
+        console.log(discouts);
+        
+    }, []);
+
     function SampleNextArrow(props) {
         const { className, onClick } = props;
         return (
@@ -91,55 +117,68 @@ const OrganicOne = () => {
                 </div>
                 <div className="organic-food__slider arrow-style-two">
                     <Slider {...settings}>
-                        <div>
-                            <div className="product-card px-8 py-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                                <Link
-                                    to="/product-details"
-                                    className="product-card__thumb flex-center"
-                                >
-                                    <img src="assets/images/thumbs/product-img20.png" alt="" />
-                                </Link>
-                                <div className="product-card__content mt-12">
-                                    <div className="flex-align gap-6">
-                                        <span className="text-xs fw-bold text-gray-500">4.8</span>
-                                        <span className="text-15 fw-bold text-warning-600 d-flex">
-                                            <i className="ph-fill ph-star" />
-                                        </span>
-                                        <span className="text-xs fw-bold text-gray-500">(17k)</span>
-                                    </div>
-                                    <h6 className="title text-lg fw-semibold mt-12 mb-8">
-                                        <Link to="/product-details" className="link text-line-2">
-                                            Taylor Farms Broccoli Florets Vegetables
-                                        </Link>
-                                    </h6>
-                                    <div className="flex-align gap-4">
-                                        <span className="text-main-600 text-md d-flex">
-                                            <i className="ph-fill ph-storefront" />
-                                        </span>
-                                        <span className="text-gray-500 text-xs">
-                                            By Lucky Supermarket
-                                        </span>
-                                    </div>
-                                    <div className="flex-between gap-8 mt-24 flex-wrap">
-                                        <div className="product-card__price">
-                                            <span className="text-gray-400 text-md fw-semibold text-decoration-line-through d-block">
-                                                $28.99
+                        {discouts?.map((discount, index) => {
+                            return (
+                                <div key={index}>
+                                <div className="product-card px-8 py-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                    <Link
+                                        to="/product-details"
+                                        key={index}
+                                        state={{product: discount}}
+                                        className="product-card__thumb flex-center"
+                                    >
+                                        <img src="assets/images/thumbs/product-img20.png" alt="" />
+                                    </Link>
+                                    <div className="product-card__content mt-12">
+                                        <div className="flex-align gap-6">
+                                            <span className="text-xs fw-bold text-gray-500">4.8</span>
+                                            <span className="text-15 fw-bold text-warning-600 d-flex">
+                                                <i className="ph-fill ph-star" />
                                             </span>
-                                            <span className="text-heading text-md fw-semibold ">
-                                                $14.99 <span className="text-gray-500 fw-normal">/Qty</span>{" "}
+                                            <span className="text-xs fw-bold text-gray-500">(17k)</span>
+                                        </div>
+                                        <h6 className="title text-lg fw-semibold mt-12 mb-8">
+                                            <Link 
+                                                to="/product-details"
+                                                key={index}
+                                                state={{product: discount}}
+                                                className="link text-line-2"
+                                            >
+                                                {discount.name}
+                                            </Link>
+                                        </h6>
+                                        <div className="flex-align gap-4">
+                                            <span className="text-main-600 text-md d-flex">
+                                                <i className="ph-fill ph-storefront" />
+                                            </span>
+                                            <span className="text-gray-500 text-xs">
+                                                {discount.description}
                                             </span>
                                         </div>
-                                        <Link
-                                            to="/cart"
-                                            className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-pill flex-align gap-8"
-                                        >
-                                            Add <i className="ph ph-shopping-cart" />
-                                        </Link>
+                                        <div className="flex-between gap-8 mt-24 flex-wrap">
+                                            <div className="product-card__price">
+                                                {/* <span className="text-gray-400 text-md fw-semibold text-decoration-line-through d-block">
+                                                    $28.99
+                                                </span> */}
+                                                <span className="text-heading text-md fw-semibold ">
+                                                    {discount.discount}% Off
+                                                    
+                                                    {/* <span className="text-gray-500 fw-normal">/Qty</span>{" "} */}
+                                                </span>
+                                            </div>
+                                            <Link
+                                                to="/cart"
+                                                className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-pill flex-align gap-8"
+                                            >
+                                                Add <i className="ph ph-shopping-cart" />
+                                            </Link>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div>
+                            )
+                        })}
+                        {/* <div>
                             <div className="product-card px-8 py-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                 <Link
                                     to="/product-details"
@@ -426,7 +465,7 @@ const OrganicOne = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </Slider>
                 </div>
             </div>
