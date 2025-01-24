@@ -16,11 +16,9 @@ const singleDocumentSchema = new mongoose.Schema({
 });
 
 const documentSchema = new mongoose.Schema({
-    buddyId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+    email: {
+        type: String,
         required: true,
-        index: true
     },
     documents: [singleDocumentSchema]
 });
