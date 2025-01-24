@@ -3,6 +3,7 @@ import cors from "cors";
 import adminRouter from "./router/admin.Route.js";
 import connectDB from './config/db.Config.js'
 import userRequestRouter from "./router/userRequest.Route.js";
+import discountRouter from "./router/discount.Route.js";
 const app = express();
 
 app.use(cors());
@@ -14,6 +15,7 @@ connectDB();
 
 app.use("/api/v1/user-requests", userRequestRouter); 
 app.use("/api/v1/admin", adminRouter);
+app.use("/api/v1/discounts", discountRouter);
 
 app.use((err, req, res, next) => {
     const statusCode = err.code || 500;
