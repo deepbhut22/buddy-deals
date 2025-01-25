@@ -1,59 +1,13 @@
 import UserRequest from "../model/userRequest.Model.js";
 import User from "../model/user.Model.js";
 import documentDAL from "../DAL/document.DAL.js";
-import mongoose from "mongoose";
 import multer from 'multer';
-
-// Submit a new user registration request
-// const submitRequest = async (req, res) => {
-//     try {
-//         // First save the documents
-//         console.log(req.body.documents);
-//         const documentData = {
-//             buddyId: new mongoose.Types.ObjectId(), // Generate a new ID for future user
-//             documents: req.body.documents.documents
-//         };
-        
-//         // in future create a service to save the document to s3 and save the url to the database.
-//         const savedDocuments = await documentDAL.saveDocument(documentData);
-
-//         const newRequest = new UserRequest({
-//             firstName: req.body.firstName,
-//             lastName: req.body.lastName,
-//             email: req.body.email,
-//             password: req.body.password,
-//             phoneNumber: req.body.phoneNumber,
-//             documents: savedDocuments._id // Store the document reference
-//         });
-
-//         const savedRequest = await newRequest.save();
-//         res.status(201).json({
-//             message: "Request submitted successfully",
-//             data: savedRequest
-//         });
-//     } catch (error) {
-//         res.status(500).json({ 
-//             message: error.message,
-//             success: false 
-//         });
-//     }
-// };
+import saveFileToLocalStorage from "../utils/saveFileToLocalStorage.js";
+import bcrypt from 'bcrypt';
 
 
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
-import { Upload } from "@aws-sdk/lib-storage";
-
-// Configure AWS S3 Client
-const s3Client = new S3Client({
-  region: process.env.AWS_REGION,
-  credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  },
-});
-
-// Configure Multer for File Uploads
-const upload = multer({
+// Middleware for Handling Single Document Upload
+export const uploadDocument = multer({
   storage: multer.memoryStorage(),
   fileFilter: (req, file, cb) => {
     if (file.mimetype === "application/pdf") {
@@ -62,72 +16,59 @@ const upload = multer({
       cb(new Error("Only PDF files are allowed"), false);
     }
   },
-});
+}).single("document"); // "document" is the name of the form field
 
-// Function to Upload a File to S3
-const uploadFileToS3 = async (file, key) => {
-  const uploadParams = {
-    Bucket: process.env.AWS_S3_BUCKET_NAME,
-    Key: key, // Unique file name
-    Body: file.buffer,
-    ContentType: file.mimetype,
-  };
-
+const registerUser = async (req, res) => {
   try {
-    const upload = new Upload({
-      client: s3Client,
-      params: uploadParams,
-    });
-    const result = await upload.done();
-    return result.Location; // Return the file's URL
-  } catch (error) {
-    console.error("Error uploading file to S3:", error);
-    throw error;
-  }
-};
+      console.log(req.body);
 
-// Controller to Handle Registration
-export const registerUser = async (req, res) => {
-  try {
-    const { firstName, lastName, email, password, phone, countryCode } = req.body;
+      console.log("okyy!");
 
-    if (!firstName || !lastName || !email || !password || !phone || !req.files) {
-      return res.status(400).json({ message: "All fields are required" });
-    }
+      const { firstName, lastName, email, password, phone, service, category, documentName } = req.body;
+      if (!firstName || !lastName) {
+        return res.status(400).json({ message: "First Name and Last Name are required" });
+      }
+      if (!email || !password) {
+        return res.status(400).json({ message: "Email and Password are required" });      
+      }
+      if (!phone) {
+        return res.status(400).json({ message: "Phone Number is required" });      
+      }
+      if (!service || !category) {
+        return res.status(400).json({ message: "Service and Category is required" });      
+      }
 
-    // Upload each document to AWS S3
-    const documentUrls = {};
-    for (const [key, file] of Object.entries(req.files)) {
-      const uniqueKey = `documents/${Date.now()}_${file.originalname}`;
-      documentUrls[key] = await uploadFileToS3(file, uniqueKey);
-    }
+      // Check if email is already registered
+      const existingUser = await UserRequest.findOne({ email });
+      if (existingUser) {
+        return res.status(400).json({ message: "Email is already registered" });
+      }
 
-    // Save user details in the database
-    const newUser = new UserRequest({
+      const documentUrl = saveFileToLocalStorage(req.file, "documents");
+
+      const hashedPass = await bcrypt.hash(password, 12);
+
+      const newUser = new UserRequest({
       firstName,
       lastName,
       email,
-      password, // Hash the password before saving
-      phoneNumber: `${countryCode}${phone}`,
-      documents: documentUrls,
+      password: hashedPass,
+      phoneNumber: phone,
+      document: {name: documentName || "this is default document name", url: documentUrl}, // Save document URL
+      service,
+      category,
     });
 
     await newUser.save();
 
-    res.status(201).json({ message: "User registered successfully", user: newUser });
-  } catch (error) {
-    console.error("Error during registration:", error);
-    res.status(500).json({ message: "Server error", error: error.message });
-  }
+
+    } catch (error) {
+      console.error("Error during registration:", error);
+      res.status(500).json({ message: "Server error", error: error.message });
+    }
 };
 
-// Middleware for Handling File Uploads
-export const uploadDocuments = upload.fields([
-  { name: "doc1", maxCount: 1 },
-  { name: "doc2", maxCount: 1 },
-  { name: "doc3", maxCount: 1 },
-  { name: "doc4", maxCount: 1 },
-]);
+
 
 // Get all registration requests (simplified version)
 const getAllRequests = async (req, res) => {
@@ -300,5 +241,5 @@ export default {
     getRequestById,
     approveRequest,
     rejectRequest,
-    uploadDocuments
+    uploadDocument
 }; 

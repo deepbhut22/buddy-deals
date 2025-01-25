@@ -23,12 +23,18 @@ const userRequestSchema = new mongoose.Schema({
         type: Number, 
         required: true,
     },
-    documents: [
-        {
-            name: { type: String, required: true },
-            url: { type: String, required: true },
-        },
-    ],
+    document: {
+        name: { type: String, required: true },
+        url: { type: String, required: true },
+    },
+    service: {
+        type: String,
+        required: true,
+    },
+    category: {
+        type: String,
+        required: true,
+    },
     requestedAt: {
         type: Date,
         default: Date.now,

@@ -20,19 +20,46 @@ function Register() {
 
   const documentRequirements = {
     'Indian Army': {
-      Serving: 'Service Certificate',
-      Veteran: 'Discharge Certificate',
-      Dependent: 'Dependent Certificate',
+      Serving: {
+        doc: 'Service Certificate',
+        note: 'Ensure your Service Certificate is issued by the competent authority and is up-to-date.',
+      },
+      Veteran: {
+        doc: 'Discharge Certificate',
+        note: 'Please upload your Discharge Certificate issued upon retirement.',
+      },
+      Dependent: {
+        doc: 'Dependent Certificate',
+        note: 'A certificate verifying your dependent status is required.',
+      },
     },
     'Indian Navy': {
-      Serving: 'Service Certificate',
-      Veteran: 'Discharge Certificate',
-      Dependent: 'Dependent Certificate',
+      Serving: {
+        doc: 'Service Certificate',
+        note: 'Ensure your Service Certificate is issued by the competent authority and is up-to-date.',
+      },
+      Veteran: {
+        doc: 'Discharge Certificate',
+        note: 'Please upload your Discharge Certificate issued upon retirement.',
+      },
+      Dependent: {
+        doc: 'Dependent Certificate',
+        note: 'A certificate verifying your dependent status is required.',
+      },
     },
     'Indian Air Force': {
-      Serving: 'Service Certificate',
-      Veteran: 'Discharge Certificate',
-      Dependent: 'Dependent Certificate',
+      Serving: {
+        doc: 'Service Certificate',
+        note: 'Ensure your Service Certificate is issued by the competent authority and is up-to-date.',
+      },
+      Veteran: {
+        doc: 'Discharge Certificate',
+        note: 'Please upload your Discharge Certificate issued upon retirement.',
+      },
+      Dependent: {
+        doc: 'Dependent Certificate',
+        note: 'A certificate verifying your dependent status is required.',
+      },
     },
   };
 
@@ -84,7 +111,10 @@ function Register() {
       formDataToSend.append('service', formData.service);
       formDataToSend.append('category', formData.category);
       formDataToSend.append('document', formData.document);
+      formDataToSend.append('documentName', formData.document.name);
 
+      console.log(formData);
+      
       try {
         const response = await fetch('http://localhost:5000/api/v1/user-requests/register', {
           method: 'POST',
@@ -233,7 +263,7 @@ function Register() {
 
           {currentStep === 4 && (
             <div>
-              <div className="mb-3">
+              <div className="mb-4">
                 <label htmlFor="service" className="form-label">Select Service</label>
                 <select
                   className="form-select"
@@ -252,7 +282,7 @@ function Register() {
               </div>
 
               {formData.service && (
-                <div className="mb-3">
+                <div className="mb-8">
                   <label htmlFor="category" className="form-label">Select Category</label>
                   <select
                     className="form-select"
@@ -270,10 +300,13 @@ function Register() {
               )}
 
               {formData.service && formData.category && (
-                <div className="mb-3">
-                  <label htmlFor="document" className="form-label">
-                    Required Document: {documentRequirements[formData.service][formData.category]}
+                <div className="mb-8">
+                  <label htmlFor="document" className="form-label" style={{ textDecoration: 'underline' }}>
+                    Required Document: {documentRequirements[formData.service][formData.category].doc}
                   </label>
+                  <p className="instruction" style={{ fontStyle: 'italic', color: '#555', fontSize: '0.9rem' }}>
+                    {documentRequirements[formData.service][formData.category].note}
+                  </p>
                   <div className={`file-upload ${formData.document ? 'has-file' : ''}`}>
                     <input
                       type="file"
@@ -286,12 +319,12 @@ function Register() {
                       <div className="upload-icon">📄</div>
                       {formData.document ? (
                         <div>
-                          {documentRequirements[formData.service][formData.category]} uploaded successfully
+                          {documentRequirements[formData.service][formData.category].doc} uploaded successfully
                           <span className="success-check">✓</span>
                         </div>
                       ) : (
                         <div>
-                          Upload {documentRequirements[formData.service][formData.category]} <span>(PDF only)</span>
+                          Upload {documentRequirements[formData.service][formData.category].doc} <span>(PDF only)</span>
                         </div>
                       )}
                     </label>
