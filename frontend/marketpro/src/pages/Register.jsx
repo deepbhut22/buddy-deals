@@ -11,17 +11,29 @@ function Register() {
     password: '',
     phone: '',
     countryCode: '',
-    designation: '',
+    service: '',
+    category: '',
     document: null,
   });
 
   const totalSteps = 4;
 
   const documentRequirements = {
-    Military: 'doctype1`',
-    Navy: 'doctype2',
-    Airforce: 'doctype3',
-    SpecialForce: 'doctype4',
+    'Indian Army': {
+      Serving: 'Service Certificate',
+      Veteran: 'Discharge Certificate',
+      Dependent: 'Dependent Certificate',
+    },
+    'Indian Navy': {
+      Serving: 'Service Certificate',
+      Veteran: 'Discharge Certificate',
+      Dependent: 'Dependent Certificate',
+    },
+    'Indian Air Force': {
+      Serving: 'Service Certificate',
+      Veteran: 'Discharge Certificate',
+      Dependent: 'Dependent Certificate',
+    },
   };
 
   const handleNext = () => {
@@ -52,7 +64,7 @@ function Register() {
       case 3:
         return formData.phone && formData.countryCode;
       case 4:
-        return formData.designation && formData.document;
+        return formData.service && formData.category && formData.document;
       default:
         return false;
     }
@@ -69,7 +81,8 @@ function Register() {
       formDataToSend.append('password', formData.password);
       formDataToSend.append('phone', formData.phone);
       formDataToSend.append('countryCode', formData.countryCode);
-      formDataToSend.append('designation', formData.designation);
+      formDataToSend.append('service', formData.service);
+      formDataToSend.append('category', formData.category);
       formDataToSend.append('document', formData.document);
 
       try {
@@ -96,7 +109,7 @@ function Register() {
       case 3:
         return 'Contact information';
       case 4:
-        return 'Document verification';
+        return 'Service details';
       default:
         return '';
     }
@@ -221,43 +234,68 @@ function Register() {
           {currentStep === 4 && (
             <div>
               <div className="mb-3">
-                <label htmlFor="designation" className="form-label">Select Designation</label>
+                <label htmlFor="service" className="form-label">Select Service</label>
                 <select
                   className="form-select"
-                  id="designation"
-                  value={formData.designation}
-                  onChange={(e) => setFormData({ ...formData, designation: e.target.value, document: null })}
+                  id="service"
+                  value={formData.service}
+                  onChange={(e) => setFormData({ ...formData, service: e.target.value, category: '', document: null })}
                   required
                 >
-                  <option value="">-- Select Designation --</option>
-                  {Object.keys(documentRequirements).map((designation) => (
-                    <option key={designation} value={designation}>{designation}</option>
-                  ))}
+                  <option value="">-- Select Service --</option>
+                  <option value="Indian Army">Indian Army</option>
+                  <option value="Indian Navy">Indian Navy</option>
+                  <option value="Indian Air Force">Indian Air Force</option>
+                  <option value="CAPFs" disabled>CAPFs (Coming Soon)</option>
+                  <option value="Indian Coast Guard" disabled>Indian Coast Guard (Coming Soon)</option>
                 </select>
               </div>
 
-              {formData.designation && (
-                <div className={`file-upload mb-3 ${formData.document ? 'has-file' : ''}`}>
-                  <input
-                    type="file"
-                    id="document"
-                    accept=".pdf"
-                    onChange={(e) => handleFileChange(e.target.files[0])}
-                    className="d-none"
-                  />
-                  <label htmlFor="document">
-                    <div className="upload-icon">📄</div>
-                    {formData.document ? (
-                      <div>
-                        {documentRequirements[formData.designation]} uploaded successfully
-                        <span className="success-check">✓</span>
-                      </div>
-                    ) : (
-                      <div>
-                        Upload {documentRequirements[formData.designation]} <span>(PDF only)</span>
-                      </div>
-                    )}
+              {formData.service && (
+                <div className="mb-3">
+                  <label htmlFor="category" className="form-label">Select Category</label>
+                  <select
+                    className="form-select"
+                    id="category"
+                    value={formData.category}
+                    onChange={(e) => setFormData({ ...formData, category: e.target.value, document: null })}
+                    required
+                  >
+                    <option value="">-- Select Category --</option>
+                    <option value="Serving">Serving</option>
+                    <option value="Veteran">Veteran</option>
+                    <option value="Dependent">Dependent</option>
+                  </select>
+                </div>
+              )}
+
+              {formData.service && formData.category && (
+                <div className="mb-3">
+                  <label htmlFor="document" className="form-label">
+                    Required Document: {documentRequirements[formData.service][formData.category]}
                   </label>
+                  <div className={`file-upload ${formData.document ? 'has-file' : ''}`}>
+                    <input
+                      type="file"
+                      id="document"
+                      accept=".pdf"
+                      onChange={(e) => handleFileChange(e.target.files[0])}
+                      className="d-none"
+                    />
+                    <label htmlFor="document">
+                      <div className="upload-icon">📄</div>
+                      {formData.document ? (
+                        <div>
+                          {documentRequirements[formData.service][formData.category]} uploaded successfully
+                          <span className="success-check">✓</span>
+                        </div>
+                      ) : (
+                        <div>
+                          Upload {documentRequirements[formData.service][formData.category]} <span>(PDF only)</span>
+                        </div>
+                      )}
+                    </label>
+                  </div>
                 </div>
               )}
             </div>
