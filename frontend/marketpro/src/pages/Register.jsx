@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../styles/auth.scss';
 
 function Register() {
+
+  const navigate = useNavigate();
+
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
     firstName: '',
@@ -112,8 +116,6 @@ function Register() {
       formDataToSend.append('category', formData.category);
       formDataToSend.append('document', formData.document);
       formDataToSend.append('documentName', formData.document.name);
-
-      console.log(formData);
       
       try {
         const response = await fetch('http://localhost:5000/api/v1/user-requests/register', {
@@ -121,7 +123,10 @@ function Register() {
           body: formDataToSend,
         });
         const data = await response.json();
-        console.log('Sent', data);
+        console.log(data);
+        
+        navigate('/login');
+
       } catch (error) {
         console.error('Registration error:', error);
       }
