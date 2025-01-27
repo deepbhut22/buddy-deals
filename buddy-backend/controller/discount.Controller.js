@@ -14,7 +14,10 @@ export const getAllProducts = async (req, res) => {
 // Get coupon code by ID
 export const getCouponCode = async (req, res) => {
     try {
+        console.log("here");        
         const { id } = req.params;
+        console.log(id);
+        
         const code = await getDiscountCodeById(id);
         if (!code) {
             return res.status(404).json({ message: "Coupon not found" });

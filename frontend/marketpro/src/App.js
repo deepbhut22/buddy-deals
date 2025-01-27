@@ -21,6 +21,7 @@ import BecomeSellerPage from "./pages/BecomeSellerPage";
 import WishlistPage from "./pages/WishlistPage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import DiscountCodePopup from "./components/DiscountCodePopUp";
 // import './App.css';
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
         <Route exact path='/login' element={<Login />} />
         <Route exact path='/register' element={<Register />} />
         <Route exact path='/shop' element={<ShopPage />} />
+        <Route exact path='/test' element={<DiscountCodePopup />} />
         <Route
           exact
           path='/product-details'
