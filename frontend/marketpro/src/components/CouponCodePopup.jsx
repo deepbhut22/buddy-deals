@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const DiscountCodePopup = ({ onClose, productId }) => {
+const CouponCodePopup = ({ onClose, productId }) => {
   const [isCodeRevealed, setIsCodeRevealed] = useState(false);
   const [discountCode, setDiscountCode] = useState('');
 
@@ -88,4 +88,4 @@ const DiscountCodePopup = ({ onClose, productId }) => {
     </div>
   );
 };
-export default DiscountCodePopup;
+export default CouponCodePopup;

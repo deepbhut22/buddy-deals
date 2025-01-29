@@ -109,7 +109,7 @@ const ProductDetailsOne = () => {
                                 </div>
                                 <div className="col-xl-6">
                                     <div className="product-details__content">
-                                        <h5 className="mb-12">{product.name}</h5>
+                                        <h5 className="mb-12">{product.name.name}</h5>
                                         <div className="flex-align flex-wrap gap-12">
                                             <div className="flex-align gap-12 flex-wrap">
                                                 <div className="flex-align gap-8">
