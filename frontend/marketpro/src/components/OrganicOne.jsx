@@ -116,13 +116,13 @@ const OrganicOne = () => {
                 </div>
                 <div className="organic-food__slider arrow-style-two">
                     <Slider {...settings}>
-                        {coupons?.map((discount, index) => {
+                        {discouts?.map((discount, index) => {
                             const toggleDescription = () => {
                                 setIsDiscriptionExpanded(!isExpanded);
                             };
 
-                            const shortDescription = discount.description.length > 30
-                                ? discount.description.substring(0, 30) + "..."
+                            const shortDescription = discount.description.length > 25
+                                ? discount.description.substring(0, 25) + "..."
                                 : discount.description;
 
                             let products = discount.products.join(", ");
@@ -132,15 +132,23 @@ const OrganicOne = () => {
 
                             return (
                                 <div key={index}>
-                                    <div className="product-card px-8 py-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                                    <div className="product-card px-4 py-4 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
                                         <Link
                                             to="/product-details"
                                             key={index}
                                             state={{ product: discount }}
                                             className="product-card__thumb flex-center"
                                         >
-                                            <img src="assets/images/thumbs/product-img20.png" alt="" />
+                                            {/* <img src="assets/images/thumbs/product-img20.png" alt="" /> */}
+                                            <img src={discount.images[0]} alt="Image" style={{ width: '142px', height: '160px', objectFit: 'cover' }} />
+
                                         </Link>
+                                        
+                                        <div style={{ width: '100%' }}>
+                                            <hr style={{ height: '1px', backgroundColor: 'gray', border: 'none', width: '100%', margin: '0' }} />
+                                        </div>
+
+
                                         <div className="product-card__content mt-12">
                                             <h6 className="title text-lg fw-semibold mt-12 mb-8">
                                                 <Link
@@ -158,31 +166,35 @@ const OrganicOne = () => {
                                                 <span className="text-main-600 text-md d-flex">
                                                     <i className="ph-fill ph-storefront" />
                                                 </span>
-                                                <span className="text-gray-500 text-xs">
-                                                    {isDescriptionExpanded ? discount.description : shortDescription}
-                                                    {discount.description.length > 10 && (
-                                                        <button 
-                                                            onClick={toggleDescription} 
-                                                            className="text-main-600 text-xs fw-bold ml-2 border-none bg-transparent cursor-pointer"
-                                                        >
-                                                            {isDescriptionExpanded ? " less" : " more"}
-                                                        </button>
-                                                    )}
+                                                <span className="text-gray-900 text-xs">
+                                                    {discount.company}
                                                 </span>
                                             </div>
 
-                                            <div className="flex-between gap-8 mt-24 flex-wrap">
+                                            <span className="text-gray-500 text-xs mt-5">
+                                                {isDescriptionExpanded ? discount.description : shortDescription}
+                                                {discount.description.length > 15 && (
+                                                    <button 
+                                                        onClick={toggleDescription} 
+                                                        className="text-main-600 text-xs fw-bold ml-2 border-none bg-transparent cursor-pointer"
+                                                    >
+                                                        {isDescriptionExpanded ? " less" : " more"}
+                                                    </button>
+                                                )}
+                                            </span>
+
+                                            <div className="flex-between gap-8 mt-16 flex-wrap">
                                                 <div className="product-card__price">
-                                                    <span className="text-heading text-md fw-semibold ">
+                                                    <span className="text-heading text-xl fw-bold">
                                                         {discount.discount}% Off
                                                     </span>
                                                 </div>
-                                                <Link
+                                                {/* <Link
                                                     to="/cart"
                                                     className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-pill flex-align gap-8"
                                                 >
                                                     Add <i className="ph ph-shopping-cart" />
-                                                </Link>
+                                                </Link> */}
                                             </div>
                                         </div>
                                     </div>

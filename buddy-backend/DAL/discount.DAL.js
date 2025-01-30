@@ -14,12 +14,32 @@ export const getAllDiscounts = async () => {
     };
 };
 
-export const getDiscountCodeById  = async (id) => {
-    const coupon = await DiscountTypes.Discount.findOne({ _id: id, remainingCoupons: { $gt: 0 } });
-    // console.log(coupon.name);
+export const getDiscountCodeById = async (id) => {
+    try {
+        const coupon = await DiscountTypes.Discount.findOneAndUpdate(
+            { 
+                _id: id, 
+                remainingCoupons: { $gt: 0 } // Ensure there are remaining coupons
+            },
+            { 
+                $inc: { remainingCoupons: -1 } // Decrease remainingCoupons count
+            },
+            { 
+                new: true // Return the updated document
+            }
+        );
 
-    return coupon.name;
+        if (!coupon) {
+            throw new Error("No available discount codes.");
+        }
+        
+        return { code: coupon.name, remainingCoupons: coupon.remainingCoupons };
+    } catch (error) {
+        console.log(error);
+        throw errorHandler(500, error.message);
+    }
 };
+
 
 export const getCouponCodeById = async (id) => {
     try {
@@ -44,9 +64,10 @@ export const getCouponCodeById = async (id) => {
             throw new Error("No available unused coupons.");
         }
 
-        const usedCoupon = coupon.name.find(entry => entry.isUsed === true);
+        const usedCoupon = coupon.name.find(entry => entry.isUsed === true);        
 
-        return usedCoupon.name
+        return {code: usedCoupon.name, remainingCoupons: coupon.remainingCoupons}
+
     } catch (error) {
         console.log(error);
         throw errorHandler(500, error.message);

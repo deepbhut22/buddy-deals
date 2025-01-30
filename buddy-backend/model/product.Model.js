@@ -50,7 +50,7 @@ const discountSchema = new mongoose.Schema({
     },
 });
 
-const couponSchema = new mongoose.Schema({
+const couponSchema = new mongoose.Schema({  
     name: {
         type: [{
             name: {

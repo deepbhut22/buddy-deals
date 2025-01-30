@@ -7,9 +7,11 @@ import DiscountCodePopup from './DiscountCodePopUp';
 const ProductDetailsOne = () => {
     const [timeLeft, setTimeLeft] = useState(getCountdown());
     const [showDiscountCodePopup, setShowDiscountCodePopup] = useState(false);
+    // const [codeRedeemed, setIsCodeRedeemed] = useState(false);
+    const [product, setProduct] = useState({});
 
     const openDiscountCodePopup = () => {
-        console.log("hello");
+        // console.log("hello");
         setShowDiscountCodePopup(true);
     };
 
@@ -18,10 +20,14 @@ const ProductDetailsOne = () => {
     };
 
     const location = useLocation();
-    const product = location.state.product;
+    const p = location.state.product;
 
     useEffect(() => {                
-
+        setProduct(prev => ({
+            ...p,
+            ...prev,
+            productsName: p.products.join(", ")
+        }));
         const interval = setInterval(() => {
             setTimeLeft(getCountdown());
         }, 1000);        
@@ -33,7 +39,8 @@ const ProductDetailsOne = () => {
         }
 
         return () => clearInterval(interval);
-    }, [showDiscountCodePopup]);
+    }, [setProduct, showDiscountCodePopup]);
+
 
 
     const productImages = [
@@ -75,8 +82,8 @@ const ProductDetailsOne = () => {
         {showDiscountCodePopup && (
             <DiscountCodePopup 
                 onClose={closeDiscountCodePopup}
-                discountCode="helloabc"
                 productId={product._id}
+                setProduct={setProduct}
             />)
         }
         <div style={showDiscountCodePopup ? blurred : {}}>
@@ -109,7 +116,7 @@ const ProductDetailsOne = () => {
                                 </div>
                                 <div className="col-xl-6">
                                     <div className="product-details__content">
-                                        <h5 className="mb-12">{product.name.name}</h5>
+                                        <h5 className="mb-12">{product.productsName}</h5>
                                         <div className="flex-align flex-wrap gap-12">
                                             <div className="flex-align gap-12 flex-wrap">
                                                 <div className="flex-align gap-8">
@@ -194,55 +201,7 @@ const ProductDetailsOne = () => {
                                                     <i className="ph ph-shopping-cart" /> Redeem Now
                                                 </div>
                                             </div>
-                                            {/* <div className="flex-align gap-12">
-                                                <Link
-                                                    to="#"
-                                                    className="w-52 h-52 bg-main-50 text-main-600 text-xl hover-bg-main-600 hover-text-white flex-center rounded-circle"
-                                                >
-                                                    <i className="ph ph-heart" />
-                                                </Link>
-                                                <Link
-                                                    to="#"
-                                                    className="w-52 h-52 bg-main-50 text-main-600 text-xl hover-bg-main-600 hover-text-white flex-center rounded-circle"
-                                                >
-                                                    <i className="ph ph-shuffle" />
-                                                </Link>
-                                                <Link
-                                                    to="#"
-                                                    className="w-52 h-52 bg-main-50 text-main-600 text-xl hover-bg-main-600 hover-text-white flex-center rounded-circle"
-                                                >
-                                                    <i className="ph ph-share-network" />
-                                                </Link>
-                                            </div> */}
-                                        </div>
-                                        {/* <span className="mt-32 pt-32 text-gray-700 border-top border-gray-100 d-block" /> */}
-                                        {/* <div className="flex-between gap-16 p-12 border border-main-two-600 border-dashed rounded-8 mb-16">
-                                            <div className="flex-align gap-12">
-                                                <button
-                                                    type="button"
-                                                    className="w-18 h-18 flex-center border border-gray-900 text-xs rounded-circle hover-bg-gray-100"
-                                                >
-                                                    <i className="ph ph-plus" />
-                                                </button>
-                                                <span className="text-gray-900 fw-medium text-xs">
-                                                    Mfr. coupon. $3.00 off 5
-                                                </span>
-                                            </div>
-                                            <Link
-                                                to="/cart"
-                                                className="text-xs fw-semibold text-main-two-600 text-decoration-underline hover-text-main-two-700"
-                                            >
-                                                View Details
-                                            </Link>
-                                        </div> */}
-                                        {/* <ul className="list-inside ms-12">
-                                            <li className="text-gray-900 text-sm mb-8">
-                                                Buy 1, Get 1 FREE
-                                            </li>
-                                            <li className="text-gray-900 text-sm mb-0">
-                                                Buy 1, Get 1 FREE
-                                            </li>
-                                        </ul>  */}
+                                            
                                     </div>
                                 </div>
                             </div>
@@ -333,6 +292,7 @@ const ProductDetailsOne = () => {
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         </div>
                     </div>
                 </div>

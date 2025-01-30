@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const DiscountCodePopup = ({ onClose, productId }) => {
+const DiscountCodePopup = ({ onClose, productId, setProduct }) => {
   const [isCodeRevealed, setIsCodeRevealed] = useState(false);
   const [discountCode, setDiscountCode] = useState('');
 
     const loadTheCode = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/api/v1/discounts/products/coupon/${productId}`);
+            const response = await axios.get(`http://localhost:5000/api/v1/discounts/products/discount/${productId}`);
             console.log(response);
             setDiscountCode(response.data.code);
-            
             setIsCodeRevealed(true);
+            // setIsRedeemed(prev => !prev);
+            setProduct(prev => ({
+                ...prev,
+                remainingCoupons: response.data.remainingCoupons
+            }));
+
         } catch (error) {
             console.log(error);
         }
