@@ -28,6 +28,7 @@ const ProductDetailsOne = () => {
             ...prev,
             productsName: p.products.join(", ")
         }));
+        
         const interval = setInterval(() => {
             setTimeLeft(getCountdown());
         }, 1000);        
