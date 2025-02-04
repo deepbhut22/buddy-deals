@@ -3,8 +3,9 @@ import { Link, useLocation } from 'react-router-dom';
 import Slider from 'react-slick';
 import { getCountdown } from '../helper/Countdown';
 import DiscountCodePopup from './DiscountCodePopUp';
+import CouponCodePopup from './CouponCodePopup';
 
-const ProductDetailsOne = () => {
+const ProductDetailsThree = () => {
     const [timeLeft, setTimeLeft] = useState(getCountdown());
     const [showDiscountCodePopup, setShowDiscountCodePopup] = useState(false);
     // const [codeRedeemed, setIsCodeRedeemed] = useState(false);
@@ -22,31 +23,25 @@ const ProductDetailsOne = () => {
     const location = useLocation();
     const p = location.state.product;
 
-    useEffect(() => {
-        const savedProduct = localStorage.getItem("product");
+    useEffect(() => {                
+        setProduct(prev => ({
+            ...p,
+            ...prev,
+            productsName: p.products.join(", ")
+        }));
         
-        if (savedProduct) {
-            setProduct(JSON.parse(savedProduct));
-        } else if (p) {
-            setProduct({
-                ...p,
-                productsName: p.products?.join(", ") || "",
-            });
-            localStorage.setItem("product", JSON.stringify(p)); // Store product
-        }
-
         const interval = setInterval(() => {
             setTimeLeft(getCountdown());
-        }, 1000);
+        }, 1000);        
 
         if (showDiscountCodePopup) {
-            document.body.classList.add("popup-open");
+            document.body.classList.add('popup-open');
         } else {
-            document.body.classList.remove("popup-open");
+            document.body.classList.remove('popup-open');
         }
 
         return () => clearInterval(interval);
-    }, [showDiscountCodePopup]);
+    }, [setProduct, showDiscountCodePopup]);
 
 
 
@@ -87,10 +82,9 @@ const ProductDetailsOne = () => {
     return (
         <>
         {showDiscountCodePopup && (
-            <DiscountCodePopup 
+            <CouponCodePopup 
                 onClose={closeDiscountCodePopup}
                 productId={product._id}
-                product={product}
                 setProduct={setProduct}
             />)
         }
@@ -124,7 +118,7 @@ const ProductDetailsOne = () => {
                                 </div>
                                 <div className="col-xl-6">
                                     <div className="product-details__content">
-                                        <h5 className="mb-12">{product?.productsName}</h5>
+                                        <h5 className="mb-12">{product.productsName}</h5>
                                         <div className="flex-align flex-wrap gap-12">
                                             <div className="flex-align gap-12 flex-wrap">
                                                 <div className="flex-align gap-8">
@@ -159,11 +153,11 @@ const ProductDetailsOne = () => {
                                         </div>
                                         <span className="mt-32 pt-32 text-gray-700 border-top border-gray-100 d-block" />
                                         <p className="text-gray-700">
-                                            {product?.description}
+                                            {product.description}
                                         </p>
                                         <div className="mt-32 flex-align flex-wrap gap-32">
                                             <div className="flex-align gap-8">
-                                                <h4 className="mb-0">{product?.discount}% Off</h4>
+                                                <h4 className="mb-0">{product.discount}% Off</h4>
                                                 {/* <span className="text-md text-gray-500">$38.00</span> */}
                                             </div>
                                             {/* <Link to="#" className="btn btn-main rounded-pill">
@@ -184,17 +178,17 @@ const ProductDetailsOne = () => {
                                                 className="progress w-100 bg-gray-100 rounded-pill h-8"
                                                 role="progressbar"
                                                 aria-label="Basic example"
-                                                aria-valuenow={product?.remainingCoupons}
+                                                aria-valuenow={product.remainingCoupons}
                                                 aria-valuemin={0}
-                                                aria-valuemax={product?.totalCoupons}
+                                                aria-valuemax={product.totalCoupons}
                                             >
                                                 <div
                                                     className="progress-bar bg-main-two-600 rounded-pill"
-                                                    style={{ width: product?.remainingCoupons / product?.totalCoupons * 100 + "%" }}
+                                                    style={{ width: product.remainingCoupons / product.totalCoupons * 100 + "%" }}
                                                 />
                                             </div>
                                             <span className="text-sm text-gray-700 mt-8">
-                                                Available only: {product?.remainingCoupons}
+                                                Available only: {product.remainingCoupons}
                                             </span>
                                         </div>
                                         {/* <span className="text-gray-900 d-block mb-8">Quantity:</span> */}
@@ -310,4 +304,4 @@ const ProductDetailsOne = () => {
     )
 }
 
-export default ProductDetailsOne
+export default ProductDetailsThree

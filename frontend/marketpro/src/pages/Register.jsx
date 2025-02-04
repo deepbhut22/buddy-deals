@@ -122,8 +122,8 @@ function Register() {
           method: 'POST',
           body: formDataToSend,
         });
-        const data = await response.json();
-        console.log(data);
+        // const data = await response.json();
+        // console.log(data);
         
         navigate('/login');
 

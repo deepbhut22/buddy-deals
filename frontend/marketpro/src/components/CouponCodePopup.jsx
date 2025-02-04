@@ -1,21 +1,46 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const CouponCodePopup = ({ onClose, productId }) => {
+const CouponCodePopup = ({ onClose, productId, setProduct }) => {
   const [isCodeRevealed, setIsCodeRevealed] = useState(false);
   const [discountCode, setDiscountCode] = useState('');
 
     const loadTheCode = async () => {
-        try {
-            const response = await axios.get(`http://localhost:5000/api/v1/discounts/products/coupon/${productId}`);
-            console.log(response);
-            setDiscountCode(response.data.code);
-            
-            setIsCodeRevealed(true);
-        } catch (error) {
-            console.log(error);
-        }
-    };
+      try {
+          const response = await axios.get(
+              `http://localhost:5000/api/v1/discounts/products/coupon/${productId}`, 
+              { withCredentials: true }
+          );
+
+          setDiscountCode(response.data.code);
+          setIsCodeRevealed(true);
+
+          setProduct(prev => {
+              const updatedProduct = {
+                  ...prev,
+                  remainingCoupons: response.data.remainingCoupons
+              };
+              localStorage.setItem("product", JSON.stringify(updatedProduct)); // Store in localStorage
+              return updatedProduct;
+          });
+
+      } catch (error) {
+          if (error.response && error.response.status === 401) {
+              const currentPath = window.location.pathname + window.location.search;
+
+              // Store product before redirecting
+              if (productId) {
+                  localStorage.setItem("product", JSON.stringify(product));
+              }
+
+              navigate(`/login?redirect=${encodeURIComponent(currentPath)}`);
+          } else {
+              console.error("Error fetching discount:", error);
+          }
+      }
+  };
+
+
 
 
   return (

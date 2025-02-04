@@ -29,7 +29,7 @@ const adminLogin = async (req, res, next) => {
             password: req.body.password,
         });
 
-        res.cookie('authToken', token, {
+        res.cookie('buddy-token', token, {
             httpOnly: true,
             serure: true,
             maxAge: 2 * 24 * 60 * 60 * 1000,

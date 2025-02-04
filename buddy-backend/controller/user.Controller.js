@@ -1,4 +1,7 @@
 import User from "../model/user.Model.js";
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import 'dotenv/config';
 
 const getUsers = async (req, res) => {
   try {
@@ -47,7 +50,7 @@ const getUsers = async (req, res) => {
 
 const loginUser = async (req, res) => {
   try {
-    console.log(req.body);
+    // console.log(req.body);
     
     const { email, password } = req.body; 
 
@@ -65,15 +68,30 @@ const loginUser = async (req, res) => {
 
     // Compare the provided password with the stored hashed password
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
-    console.log(isPasswordCorrect);
-    
+    // console.log("here");
 
     if (!isPasswordCorrect) {
       return res.status(401).json({ success: false, message: "Invalid credentials" });
-    } 
+    }     
+
+    const token = jwt.sign(
+        {id: user._id, email: user.email},
+        process.env.SECRET,
+        { expiresIn: '2d' },
+    );
+
+    res.cookie('buddyToken', token, {
+        httpOnly: true,
+        serure: false,
+        maxAge: 2 * 24 * 60 * 60 * 1000,
+    });
+
+    res.status(200).json({ success: true, message: "Login successful", data: user });
 
   } catch (error) {
+    console.log(error);
     
+    res.status(500).json({ success: false, message: "Server error", error });
   }
 }
 

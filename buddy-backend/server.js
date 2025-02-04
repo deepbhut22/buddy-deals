@@ -5,11 +5,15 @@ import connectDB from './config/db.Config.js'
 import userRequestRouter from "./router/userRequest.Route.js";
 import userRouter from "./router/user.Router.js";
 import discountRouter from "./router/discount.Route.js";
+import cookieParser from "cookie-parser";
 const app = express();
 
-app.use(cors());
-
+app.use(cors({
+    origin: 'http://localhost:3000', // Replace with your frontend URL
+    credentials: true // Allow cookies to be sent
+}));
 app.use(express.json());
+app.use(cookieParser())
 
 connectDB();
 

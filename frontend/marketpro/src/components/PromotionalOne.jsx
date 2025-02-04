@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios';
 
 const PromotionalOne = () => {
 
@@ -7,12 +8,15 @@ const PromotionalOne = () => {
     const [coupons, setCoupons] = useState([]);
     const [urlDiscounts, setUrlDiscounts] = useState([]);
 
+    // instead of products fetch the promotion deals.
     const getAllProducts = async () => {
         try {
             const products = await axios.get("http://localhost:5000/api/v1/discounts/products");
-            setDiscounts(products.data[0]);
-            setCoupons(products.data[1]);
-            setUrlDiscounts(products.data[2]);
+            // console.log(products);
+            
+            setDiscounts(products.data.discounts);
+            setCoupons(products.data.coupons);
+            setUrlDiscounts(products.data.urlDiscounts);
         } catch (error) {
             console.log(error);
         }
@@ -20,7 +24,7 @@ const PromotionalOne = () => {
 
     useEffect(() => {
         getAllProducts();
-    })
+    }, [])
 
     return (
 
@@ -30,7 +34,7 @@ const PromotionalOne = () => {
             <div className="container container-lg">
                 <div className="row gy-4">
 
-                    {discouts.map((discount, index) => {
+                    {/* {discouts.map((discount, index) => {
                         return (
                             <div className="col-xl-3 col-sm-6 col-xs-6">
                             <div className="promotional-banner-item position-relative rounded-24 overflow-hidden z-1">
@@ -56,9 +60,9 @@ const PromotionalOne = () => {
                             </div>
                         </div>
                         )
-                    })}
+                    })} */}
 
-{/*                     
+                    
                     <div className="col-xl-3 col-sm-6 col-xs-6">
                         <div className="promotional-banner-item position-relative rounded-24 overflow-hidden z-1">
                             <img
@@ -127,7 +131,7 @@ const PromotionalOne = () => {
                                 </Link>
                             </div>
                         </div>
-                    </div> */}
+                    </div>
                 </div>
             </div>
         </section>

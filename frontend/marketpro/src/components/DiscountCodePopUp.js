@@ -1,26 +1,50 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const DiscountCodePopup = ({ onClose, productId, setProduct }) => {
+const DiscountCodePopup = ({ onClose, productId, setProduct, product }) => {
   const [isCodeRevealed, setIsCodeRevealed] = useState(false);
   const [discountCode, setDiscountCode] = useState('');
 
-    const loadTheCode = async () => {
-        try {
-            const response = await axios.get(`http://localhost:5000/api/v1/discounts/products/discount/${productId}`);
-            console.log(response);
-            setDiscountCode(response.data.code);
-            setIsCodeRevealed(true);
-            // setIsRedeemed(prev => !prev);
-            setProduct(prev => ({
+    const navigate = useNavigate();
+
+  const loadTheCode = async () => {
+    try {
+        const response = await axios.get(
+            `http://localhost:5000/api/v1/discounts/products/discount/${productId}`, 
+            { withCredentials: true }
+        );
+
+        setDiscountCode(response.data.code);
+        setIsCodeRevealed(true);
+
+        setProduct(prev => {
+            const updatedProduct = {
                 ...prev,
                 remainingCoupons: response.data.remainingCoupons
-            }));
+            };
+            localStorage.setItem("product", JSON.stringify(updatedProduct)); // Store in localStorage
+            return updatedProduct;
+        });
 
-        } catch (error) {
-            console.log(error);
+    } catch (error) {
+        if (error.response && error.response.status === 401) {
+            const currentPath = window.location.pathname + window.location.search;
+
+            // Store product before redirecting
+            if (productId) {
+                localStorage.setItem("product", JSON.stringify(product));
+            }
+
+            navigate(`/login?redirect=${encodeURIComponent(currentPath)}`);
+        } else {
+            console.error("Error fetching discount:", error);
         }
-    };
+    }
+  };
+
+
+
 
 
   return (

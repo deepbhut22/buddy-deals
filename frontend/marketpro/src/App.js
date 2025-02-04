@@ -22,6 +22,7 @@ import WishlistPage from "./pages/WishlistPage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import DiscountCodePopup from "./components/DiscountCodePopUp";
+import ProductDetailsPagethree from "./pages/ProductDetailsPageThree";
 // import './App.css';
 
 function App() {
@@ -47,6 +48,11 @@ function App() {
           exact
           path='/product-details-two'
           element={<ProductDetailsPageTwo />}
+        />
+        <Route
+          exact
+          path='/product-details-coupon'
+          element={<ProductDetailsPagethree />}
         />
         <Route exact path='/cart' element={<CartPage />} />
         <Route exact path='/checkout' element={<CheckoutPage />} />
