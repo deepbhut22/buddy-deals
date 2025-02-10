@@ -1,0 +1,58 @@
+$primary-green: #4CAF50;
+$light-green: #E8F5E9;
+
+.payment-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+
+    .payment-header {
+        color: $primary-green;
+        margin-bottom: 2rem;
+    }
+
+    .payment-option {
+        background-color: $light-green;
+        border: 2px solid transparent;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+            border-color: $primary-green;
+            transform: translateY(-2px);
+        }
+
+        &.selected {
+            border-color: $primary-green;
+            background-color: lighten($light-green, 2%);
+        }
+    }
+
+    .payment-form {
+        margin-top: 2rem;
+
+        .form-control {
+            border-color: #ddd;
+
+            &:focus {
+                border-color: $primary-green;
+                box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
+            }
+        }
+    }
+
+    .btn-pay {
+        background-color: $primary-green;
+        border: none;
+        padding: 0.8rem 2rem;
+        font-weight: 600;
+
+        &:hover {
+            background-color: darken($primary-green, 5%);
+        }
+    }
+}

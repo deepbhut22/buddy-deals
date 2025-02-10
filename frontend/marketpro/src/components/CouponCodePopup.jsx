@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const CouponCodePopup = ({ onClose, productId, setProduct }) => {
+const CouponCodePopup = ({ onClose, productId, setProduct, product }) => {
   const [isCodeRevealed, setIsCodeRevealed] = useState(false);
   const [discountCode, setDiscountCode] = useState('');
+  const navigate = useNavigate();
 
     const loadTheCode = async () => {
-      try {
+      try { 
           const response = await axios.get(
               `http://localhost:5000/api/v1/discounts/products/coupon/${productId}`, 
               { withCredentials: true }

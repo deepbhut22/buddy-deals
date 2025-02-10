@@ -23,6 +23,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import DiscountCodePopup from "./components/DiscountCodePopUp";
 import ProductDetailsPagethree from "./pages/ProductDetailsPageThree";
+import PaymentMain from "./pages/PaymentMain";
 // import './App.css';
 
 function App() {
@@ -65,6 +66,7 @@ function App() {
         <Route exact path='/vendor' element={<VendorPage />} />
         <Route exact path='/vendor-details' element={<VendorDetailsPage />} />
         <Route exact path='/vendor-two' element={<VendorTwoPage />} />
+        <Route exact path='/pay' element={<PaymentMain />} />
         <Route
           exact
           path='/vendor-two-details'

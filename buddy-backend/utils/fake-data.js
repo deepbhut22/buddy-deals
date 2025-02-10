@@ -1,24 +1,26 @@
 import mongoose from 'mongoose';
 import { faker } from '@faker-js/faker';
 
-// Your updated schema
-const urlDiscountSchema = new mongoose.Schema({
-    url: { type: String, required: true },
-    discount: { type: Number, required: true },
+// Define the discount schema
+const discountSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    description: { type: String, required: true },
+    discount: { type: Number, required: true }, // Discount in percentage
     startDate: { type: Date, required: true },
     endDate: { type: Date, required: true },
     category: { type: [String], required: true },
+    products: { type: [String], default: null },
     company: { type: String, required: true },
     images: { type: [String], required: true },
-    totalCoupons: { type: Number, required: true },
     remainingCoupons: { type: Number, required: true },
+    totalCoupons: { type: Number, required: true },
 });
 
-const UrlDiscount = mongoose.model('UrlDiscount', urlDiscountSchema);
+const Discount = mongoose.model('Discount', discountSchema);
 
 // Connect to MongoDB
 mongoose
-    .connect('mongodb://127.0.0.1:27017/your_database_name', {
+    .connect('mongodb+srv://neel:h6yoMVxNBiBfpqOl@cluster0.iavsk.mongodb.net/buddy-deals', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
@@ -28,15 +30,18 @@ mongoose
 // Generate dummy data
 const generateDummyData = () => {
     const categories = ['Electronics', 'Clothing', 'Home', 'Books', 'Beauty'];
+    const products = ['Laptop', 'Shirt', 'Sofa', 'Novel', 'Lipstick', 'Phone', 'Watch'];
 
     return Array.from({ length: 50 }, () => {
         const totalCoupons = faker.number.int({ min: 50, max: 500 });
         return {
-            url: faker.internet.url(),
-            discount: faker.number.int({ min: 5, max: 90 }), // Discount in percentage
+            name: faker.commerce.productName(),
+            description: faker.commerce.productDescription(),
+            discount: faker.number.int({ min: 5, max: 90 }),
             startDate: faker.date.soon(),
             endDate: faker.date.future(),
             category: faker.helpers.arrayElements(categories, faker.number.int({ min: 1, max: 3 })),
+            products: faker.helpers.arrayElements(products, faker.number.int({ min: 1, max: 5 })),
             company: faker.company.name(),
             images: Array.from({ length: 3 }, () => faker.image.url()),
             totalCoupons,
@@ -49,8 +54,8 @@ const generateDummyData = () => {
 const seedDatabase = async () => {
     try {
         const dummyData = generateDummyData();
-        await UrlDiscount.insertMany(dummyData);
-        console.log('50 dummy URL discounts inserted successfully!');
+        await Discount.insertMany(dummyData);
+        console.log('50 dummy discounts inserted successfully!');
         mongoose.connection.close();
     } catch (err) {
         console.error('Error inserting dummy data:', err);

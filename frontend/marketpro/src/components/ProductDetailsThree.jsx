@@ -86,6 +86,7 @@ const ProductDetailsThree = () => {
                 onClose={closeDiscountCodePopup}
                 productId={product._id}
                 setProduct={setProduct}
+                product={product}
             />)
         }
         <div style={showDiscountCodePopup ? blurred : {}}>

@@ -200,7 +200,6 @@ const ProductDetailsOne = () => {
                                         {/* <span className="text-gray-900 d-block mb-8">Quantity:</span> */}
                                         <div className="flex-between gap-16 flex-wrap">
                                             <div className="flex-align flex-wrap gap-16">
-                                            
                                                 <div
                                                     className="btn btn-main rounded-pill flex-align d-inline-flex gap-8 px-48"
                                                     onClick={openDiscountCodePopup}
@@ -209,7 +208,6 @@ const ProductDetailsOne = () => {
                                                     <i className="ph ph-shopping-cart" /> Redeem Now
                                                 </div>
                                             </div>
-                                            
                                     </div>
                                 </div>
                             </div>
