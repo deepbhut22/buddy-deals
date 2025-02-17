@@ -116,7 +116,8 @@ const FeatureOne = () => {
                             <div className="feature-item text-center">
                                 <div className="feature-item__thumb rounded-circle">
                                     <Link to="/shop" className="w-100 h-100 flex-center">
-                                        <img src="assets/images/thumbs/feature-img1.png" alt="" />
+                                        {/* <img src="assets/images/thumbs/feature-img1.png" alt="" /> */}
+                                        <img src="assets/images/temp/vegetables.webp" alt="" />
                                     </Link>
                                 </div>
                                 <div className="feature-item__content mt-16">
@@ -161,7 +162,8 @@ const FeatureOne = () => {
                             <div className="feature-item text-center">
                                 <div className="feature-item__thumb rounded-circle">
                                     <Link to="/shop" className="w-100 h-100 flex-center">
-                                        <img src="assets/images/thumbs/feature-img4.png" alt="" />
+                                        <img src="assets/images/temp/vegetable-101x96.png" alt="" />
+                                        {/* <img src="assets/images/thumbs/feature-img4.png" alt="" /> */}
                                     </Link>
                                 </div>
                                 <div className="feature-item__content mt-16">
@@ -176,7 +178,8 @@ const FeatureOne = () => {
                             <div className="feature-item text-center">
                                 <div className="feature-item__thumb rounded-circle">
                                     <Link to="/shop" className="w-100 h-100 flex-center">
-                                        <img src="assets/images/thumbs/feature-img5.png" alt="" />
+                                        <img src="assets/images/temp/vegetabke-111x64.png" alt="" />
+                                        {/* <img src="assets/images/thumbs/feature-img5.png" alt="" /> */}
                                     </Link>
                                 </div>
                                 <div className="feature-item__content mt-16">
@@ -206,7 +209,8 @@ const FeatureOne = () => {
                             <div className="feature-item text-center">
                                 <div className="feature-item__thumb rounded-circle">
                                     <Link to="/shop" className="w-100 h-100 flex-center">
-                                        <img src="assets/images/thumbs/feature-img7.png" alt="" />
+                                        <img src="assets/images/temp/vegetable-62x80.png" alt="" />
+                                        {/* <img src="assets/images/thumbs/feature-img7.png" alt="" /> */}
                                     </Link>
                                 </div>
                                 <div className="feature-item__content mt-16">

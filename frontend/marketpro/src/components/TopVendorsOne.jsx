@@ -21,7 +21,8 @@ const TopVendorsOne = () => {
                         <div className="vendor-card text-center px-16 pb-24">
                             <div className="">
                                 <img
-                                    src="assets/images/thumbs/vendor-logo1.png"
+                                    src="assets/images/temp/mart-logo.png"
+                                    // src="assets/images/thumbs/vendor-logo1.png"
                                     alt=""
                                     className="vendor-card__logo m-12"
                                 />
@@ -44,7 +45,8 @@ const TopVendorsOne = () => {
                                     <img src="assets/images/thumbs/vendor-img2.png" alt="" />
                                 </div>
                                 <div className="vendor-card__item bg-white rounded-circle flex-center">
-                                    <img src="assets/images/thumbs/vendor-img3.png" alt="" />
+                                    <img src="assets/images/temp/top-vendor-img.png" alt="" />
+                                    {/* <img src="assets/images/thumbs/vendor-img3.png" alt="" /> */}
                                 </div>
                                 <div className="vendor-card__item bg-white rounded-circle flex-center">
                                     <img src="assets/images/thumbs/vendor-img4.png" alt="" />
@@ -59,7 +61,8 @@ const TopVendorsOne = () => {
                         <div className="vendor-card text-center px-16 pb-24">
                             <div className="">
                                 <img
-                                    src="assets/images/thumbs/vendor-logo2.png"
+                                    // src="assets/images/thumbs/vendor-logo2.png"
+                                    src="assets/images/temp/mart-logo.png"
                                     alt=""
                                     className="vendor-card__logo m-12"
                                 />
@@ -82,7 +85,8 @@ const TopVendorsOne = () => {
                                     <img src="assets/images/thumbs/vendor-img2.png" alt="" />
                                 </div>
                                 <div className="vendor-card__item bg-white rounded-circle flex-center">
-                                    <img src="assets/images/thumbs/vendor-img3.png" alt="" />
+                                    {/* <img src="assets/images/thumbs/vendor-img3.png" alt="" /> */}
+                                    <img src="assets/images/temp/top-vendor-img.png" alt="" />
                                 </div>
                                 <div className="vendor-card__item bg-white rounded-circle flex-center">
                                     <img src="assets/images/thumbs/vendor-img4.png" alt="" />
@@ -97,7 +101,8 @@ const TopVendorsOne = () => {
                         <div className="vendor-card text-center px-16 pb-24">
                             <div className="">
                                 <img
-                                    src="assets/images/thumbs/vendor-logo3.png"
+                                    // src="assets/images/thumbs/vendor-logo3.png"
+                                    src="assets/images/temp/mart-logo.png"
                                     alt=""
                                     className="vendor-card__logo m-12"
                                 />
@@ -120,7 +125,8 @@ const TopVendorsOne = () => {
                                     <img src="assets/images/thumbs/vendor-img2.png" alt="" />
                                 </div>
                                 <div className="vendor-card__item bg-white rounded-circle flex-center">
-                                    <img src="assets/images/thumbs/vendor-img3.png" alt="" />
+                                    {/* <img src="assets/images/thumbs/vendor-img3.png" alt="" /> */}
+                                    <img src="assets/images/temp/top-vendor-img.png" alt="" />
                                 </div>
                                 <div className="vendor-card__item bg-white rounded-circle flex-center">
                                     <img src="assets/images/thumbs/vendor-img4.png" alt="" />

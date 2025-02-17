@@ -9,7 +9,7 @@ import cookieParser from "cookie-parser";
 const app = express();
 
 app.use(cors({
-    origin: 'http://localhost:3000', // Replace with your frontend URL
+    origin: '*', // Replace with your frontend URL
     credentials: true // Allow cookies to be sent
 }));
 app.use(express.json());

@@ -14,7 +14,8 @@ const DeliveryOne = () => {
                     <div className="row align-items-center">
                         <div className="col-md-3 d-md-block d-none">
                             <div className="delivery__man text-center">
-                                <img src="assets/images/thumbs/delivery-man.png" alt="" />
+                                {/* <img src="assets/images/thumbs/delivery-man.png" alt="" /> */}
+                                <img src="assets/images/temp/delivery-logo.png" alt="" />
                             </div>
                         </div>
                         <div className="col-md-5 col-sm-7">
@@ -36,7 +37,8 @@ const DeliveryOne = () => {
                             </div>
                         </div>
                         <div className="col-md-4 col-sm-5 d-sm-block d-none">
-                            <img src="assets/images/thumbs/special-snacks-img.png" alt="" />
+                            {/* <img src="assets/images/thumbs/special-snacks-img.png" alt="" /> */}
+                            <img src="assets/images/temp/delivery.png" alt="" />
                         </div>
                     </div>
                 </div>

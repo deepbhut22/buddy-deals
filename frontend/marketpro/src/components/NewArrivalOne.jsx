@@ -102,7 +102,8 @@ const NewArrivalOne = () => {
                                     to="/product-details"
                                     className="product-card__thumb flex-center"
                                 >
-                                    <img src="assets/images/thumbs/product-img20.png" alt="" />
+                                    {/* <img src="assets/images/thumbs/product-img20.png" alt="" /> */}
+                                    <img src="assets/images/temp/hotdeal-prods.png" alt="" />
                                 </Link>
                                 <div className="product-card__content mt-12">
                                     <div className="flex-align gap-6">
@@ -150,7 +151,8 @@ const NewArrivalOne = () => {
                                     to="/product-details"
                                     className="product-card__thumb flex-center"
                                 >
-                                    <img src="assets/images/thumbs/product-img21.png" alt="" />
+                                    {/* <img src="assets/images/thumbs/product-img21.png" alt="" /> */}
+                                    <img src="assets/images/temp/hotdeal-prods.png" alt="" />
                                 </Link>
                                 <div className="product-card__content mt-12">
                                     <div className="flex-align gap-6">

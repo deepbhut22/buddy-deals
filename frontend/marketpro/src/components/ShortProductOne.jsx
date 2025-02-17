@@ -108,7 +108,8 @@ const ShortProductOne = () => {
                                             <div className="w-90 h-90 rounded-12 border border-gray-100 flex-shrink-0">
                                                 <Link to="/product-details" className="link">
                                                     <img
-                                                        src="assets/images/thumbs/short-product-img2.png"
+                                                        src="assets/images/temp/vege-100x100.png"
+                                                        // src="assets/images/thumbs/short-product-img2.png"
                                                         alt=""
                                                     />
                                                 </Link>
@@ -140,7 +141,8 @@ const ShortProductOne = () => {
                                             <div className="w-90 h-90 rounded-12 border border-gray-100 flex-shrink-0">
                                                 <Link to="/product-details" className="link">
                                                     <img
-                                                        src="assets/images/thumbs/short-product-img3.png"
+                                                        // src="assets/images/thumbs/short-product-img3.png"
+                                                        src="assets/images/temp/vege-100x100.png"
                                                         alt=""
                                                     />
                                                 </Link>
@@ -172,7 +174,8 @@ const ShortProductOne = () => {
                                             <div className="w-90 h-90 rounded-12 border border-gray-100 flex-shrink-0">
                                                 <Link to="/product-details" className="link">
                                                     <img
-                                                        src="assets/images/thumbs/short-product-img4.png"
+                                                        // src="assets/images/thumbs/short-product-img4.png"
+                                                        src="assets/images/temp/vege-100x100.png"
                                                         alt=""
                                                     />
                                                 </Link>
@@ -206,7 +209,8 @@ const ShortProductOne = () => {
                                             <div className="w-90 h-90 rounded-12 border border-gray-100 flex-shrink-0">
                                                 <Link to="/product-details" className="link">
                                                     <img
-                                                        src="assets/images/thumbs/short-product-img1.png"
+                                                        // src="assets/images/thumbs/short-product-img1.png"
+                                                        src="assets/images/temp/vege-100x100.png"
                                                         alt=""
                                                     />
                                                 </Link>
@@ -238,7 +242,8 @@ const ShortProductOne = () => {
                                             <div className="w-90 h-90 rounded-12 border border-gray-100 flex-shrink-0">
                                                 <Link to="/product-details" className="link">
                                                     <img
-                                                        src="assets/images/thumbs/short-product-img2.png"
+                                                        // src="assets/images/thumbs/short-product-img2.png"
+                                                        src="assets/images/temp/vege-100x100.png"
                                                         alt=""
                                                     />
                                                 </Link>
@@ -270,7 +275,8 @@ const ShortProductOne = () => {
                                             <div className="w-90 h-90 rounded-12 border border-gray-100 flex-shrink-0">
                                                 <Link to="/product-details" className="link">
                                                     <img
-                                                        src="assets/images/thumbs/short-product-img3.png"
+                                                        // src="assets/images/thumbs/short-product-img3.png"
+                                                        src="assets/images/temp/vege-100x100.png"
                                                         alt=""
                                                     />
                                                 </Link>
@@ -302,7 +308,8 @@ const ShortProductOne = () => {
                                             <div className="w-90 h-90 rounded-12 border border-gray-100 flex-shrink-0">
                                                 <Link to="/product-details" className="link">
                                                     <img
-                                                        src="assets/images/thumbs/short-product-img4.png"
+                                                        // src="assets/images/thumbs/short-product-img4.png"
+                                                        src="assets/images/temp/vege-100x100.png"
                                                         alt=""
                                                     />
                                                 </Link>
@@ -349,7 +356,8 @@ const ShortProductOne = () => {
                                             <div className="w-90 h-90 rounded-12 border border-gray-100 flex-shrink-0">
                                                 <Link to="/product-details" className="link">
                                                     <img
-                                                        src="assets/images/thumbs/short-product-img5.png"
+                                                        // src="assets/images/thumbs/short-product-img5.png"
+                                                        src="assets/images/temp/vege-100x100.png"
                                                         alt=""
                                                     />
                                                 </Link>
@@ -381,7 +389,8 @@ const ShortProductOne = () => {
                                             <div className="w-90 h-90 rounded-12 border border-gray-100 flex-shrink-0">
                                                 <Link to="/product-details" className="link">
                                                     <img
-                                                        src="assets/images/thumbs/short-product-img6.png"
+                                                        // src="assets/images/thumbs/short-product-img6.png"
+                                                        src="assets/images/temp/vege-100x100.png"
                                                         alt=""
                                                     />
                                                 </Link>
@@ -413,7 +422,8 @@ const ShortProductOne = () => {
                                             <div className="w-90 h-90 rounded-12 border border-gray-100 flex-shrink-0">
                                                 <Link to="/product-details" className="link">
                                                     <img
-                                                        src="assets/images/thumbs/short-product-img7.png"
+                                                        // src="assets/images/thumbs/short-product-img7.png"
+                                                        src="assets/images/temp/vege-100x100.png"
                                                         alt=""
                                                     />
                                                 </Link>
@@ -445,7 +455,8 @@ const ShortProductOne = () => {
                                             <div className="w-90 h-90 rounded-12 border border-gray-100 flex-shrink-0">
                                                 <Link to="/product-details" className="link">
                                                     <img
-                                                        src="assets/images/thumbs/short-product-img8.png"
+                                                        // src="assets/images/thumbs/short-product-img8.png"
+                                                        src="assets/images/temp/vege-100x100.png"
                                                         alt=""
                                                     />
                                                 </Link>
@@ -479,7 +490,8 @@ const ShortProductOne = () => {
                                             <div className="w-90 h-90 rounded-12 border border-gray-100 flex-shrink-0">
                                                 <Link to="/product-details" className="link">
                                                     <img
-                                                        src="assets/images/thumbs/short-product-img5.png"
+                                                        // src="assets/images/thumbs/short-product-img5.png"
+                                                        src="assets/images/temp/vege-100x100.png"
                                                         alt=""
                                                     />
                                                 </Link>
@@ -511,7 +523,8 @@ const ShortProductOne = () => {
                                             <div className="w-90 h-90 rounded-12 border border-gray-100 flex-shrink-0">
                                                 <Link to="/product-details" className="link">
                                                     <img
-                                                        src="assets/images/thumbs/short-product-img6.png"
+                                                        // src="assets/images/thumbs/short-product-img6.png"
+                                                        src="assets/images/temp/vege-100x100.png"
                                                         alt=""
                                                     />
                                                 </Link>
@@ -543,7 +556,8 @@ const ShortProductOne = () => {
                                             <div className="w-90 h-90 rounded-12 border border-gray-100 flex-shrink-0">
                                                 <Link to="/product-details" className="link">
                                                     <img
-                                                        src="assets/images/thumbs/short-product-img7.png"
+                                                        // src="assets/images/thumbs/short-product-img7.png"
+                                                        src="assets/images/temp/vege-100x100.png"
                                                         alt=""
                                                     />
                                                 </Link>
@@ -575,7 +589,8 @@ const ShortProductOne = () => {
                                             <div className="w-90 h-90 rounded-12 border border-gray-100 flex-shrink-0">
                                                 <Link to="/product-details" className="link">
                                                     <img
-                                                        src="assets/images/thumbs/short-product-img8.png"
+                                                        // src="assets/images/thumbs/short-product-img8.png"
+                                                        src="assets/images/temp/vege-100x100.png"
                                                         alt=""
                                                     />
                                                 </Link>
@@ -622,7 +637,8 @@ const ShortProductOne = () => {
                                             <div className="w-90 h-90 rounded-12 border border-gray-100 flex-shrink-0">
                                                 <Link to="/product-details" className="link">
                                                     <img
-                                                        src="assets/images/thumbs/short-product-img9.png"
+                                                        // src="assets/images/thumbs/short-product-img9.png"
+                                                        src="assets/images/temp/vege-100x100.png"
                                                         alt=""
                                                     />
                                                 </Link>
@@ -654,7 +670,8 @@ const ShortProductOne = () => {
                                             <div className="w-90 h-90 rounded-12 border border-gray-100 flex-shrink-0">
                                                 <Link to="/product-details" className="link">
                                                     <img
-                                                        src="assets/images/thumbs/short-product-img4.png"
+                                                        // src="assets/images/thumbs/short-product-img4.png"
+                                                        src="assets/images/temp/vege-100x100.png"
                                                         alt=""
                                                     />
                                                 </Link>
@@ -686,7 +703,8 @@ const ShortProductOne = () => {
                                             <div className="w-90 h-90 rounded-12 border border-gray-100 flex-shrink-0">
                                                 <Link to="/product-details" className="link">
                                                     <img
-                                                        src="assets/images/thumbs/short-product-img7.png"
+                                                        // src="assets/images/thumbs/short-product-img7.png"
+                                                        src="assets/images/temp/vege-100x100.png"
                                                         alt=""
                                                     />
                                                 </Link>

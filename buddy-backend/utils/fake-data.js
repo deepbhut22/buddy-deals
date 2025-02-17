@@ -1,22 +1,9 @@
 import mongoose from 'mongoose';
 import { faker } from '@faker-js/faker';
+import DiscountTypes from '../model/product.Model.js';
+// const Coupon = mongoose.model('Coupon', couponSchema);
 
-// Define the discount schema
-const discountSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    description: { type: String, required: true },
-    discount: { type: Number, required: true }, // Discount in percentage
-    startDate: { type: Date, required: true },
-    endDate: { type: Date, required: true },
-    category: { type: [String], required: true },
-    products: { type: [String], default: null },
-    company: { type: String, required: true },
-    images: { type: [String], required: true },
-    remainingCoupons: { type: Number, required: true },
-    totalCoupons: { type: Number, required: true },
-});
-
-const Discount = mongoose.model('Discount', discountSchema);
+const Coupon = DiscountTypes.Coupon;
 
 // Connect to MongoDB
 mongoose
@@ -35,7 +22,7 @@ const generateDummyData = () => {
     return Array.from({ length: 50 }, () => {
         const totalCoupons = faker.number.int({ min: 50, max: 500 });
         return {
-            name: faker.commerce.productName(),
+            name: [{ name: faker.commerce.productName(), isUsed: false }],
             description: faker.commerce.productDescription(),
             discount: faker.number.int({ min: 5, max: 90 }),
             startDate: faker.date.soon(),
@@ -54,8 +41,8 @@ const generateDummyData = () => {
 const seedDatabase = async () => {
     try {
         const dummyData = generateDummyData();
-        await Discount.insertMany(dummyData);
-        console.log('50 dummy discounts inserted successfully!');
+        await Coupon.insertMany(dummyData);
+        console.log('50 dummy coupons inserted successfully!');
         mongoose.connection.close();
     } catch (err) {
         console.error('Error inserting dummy data:', err);

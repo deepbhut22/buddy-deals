@@ -14,11 +14,13 @@ const OfferOne = () => {
                                 className="position-absolute inset-block-start-0 inset-inline-start-0 z-n1 w-100 h-100 opacity-6"
                             />
                             <div className="offer-card__thumb d-lg-block d-none">
-                                <img src="assets/images/thumbs/offer-img1.png" alt="" />
+                                <img src="assets/images/temp/offer.png" alt="" />
+                                {/* <img src="assets/images/thumbs/offer-img1.png" alt="" /> */}
                             </div>
                             <div className="py-xl-4">
                                 <div className="offer-card__logo mb-16 w-80 h-80 flex-center bg-white rounded-circle">
-                                    <img src="assets/images/thumbs/offer-logo.png" alt="" />
+                                    <img src="assets/images/temp/offer-logo.png" alt="" />
+                                    {/* <img src="assets/images/thumbs/offer-logo.png" alt="" /> */}
                                 </div>
                                 <h4 className="text-white mb-8">$5 off your first order</h4>
                                 <div className="flex-align gap-8">
@@ -46,7 +48,8 @@ const OfferOne = () => {
                                 className="position-absolute inset-block-start-0 inset-inline-start-0 z-n1 w-100 h-100 opacity-6"
                             />
                             <div className="offer-card__thumb d-lg-block d-none">
-                                <img src="assets/images/thumbs/offer-img2.png" alt="" />
+                                <img src="assets/images/temp/offer2.png" alt="" />
+                                {/* <img src="assets/images/thumbs/offer-img2.png" alt="" /> */}
                             </div>
                             <div className="py-xl-4">
                                 <div className="offer-card__logo mb-16 w-80 h-80 flex-center bg-white rounded-circle">

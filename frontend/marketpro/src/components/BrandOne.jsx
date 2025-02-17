@@ -97,16 +97,19 @@ const BrandOne = () => {
                     <div className="brand-slider arrow-style-two">
                         <Slider {...settings}>
                             <div className="brand-item">
-                                <img src="assets/images/thumbs/brand-img1.png" alt="" />
+                                <img src="assets/images/temp/bms.png" alt="" />
+                                {/* <img src="assets/images/thumbs/brand-img1.png" alt="" /> */}
                             </div>
                             <div className="brand-item">
-                                <img src="assets/images/thumbs/brand-img2.png" alt="" />
+                                {/* <img src="assets/images/thumbs/brand-img2.png" alt="" /> */}
+                                <img src="assets/images/temp/bms.png" alt="" />
                             </div>
                             <div className="brand-item">
                                 <img src="assets/images/thumbs/brand-img3.png" alt="" />
                             </div>
                             <div className="brand-item">
-                                <img src="assets/images/thumbs/brand-img4.png" alt="" />
+                                {/* <img src="assets/images/thumbs/brand-img4.png" alt="" /> */}
+                                <img src="assets/images/temp/bms.png" alt="" />
                             </div>
                             <div className="brand-item">
                                 <img src="assets/images/thumbs/brand-img5.png" alt="" />

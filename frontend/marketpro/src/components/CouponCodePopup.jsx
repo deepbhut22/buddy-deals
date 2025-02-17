@@ -15,7 +15,7 @@ const CouponCodePopup = ({ onClose, productId, setProduct, product }) => {
           );
 
           setDiscountCode(response.data.code);
-          setIsCodeRevealed(true);
+          setIsCodeRevealed(true);  
 
           setProduct(prev => {
               const updatedProduct = {
